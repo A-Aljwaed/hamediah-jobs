@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16
+    container_name: jobs-postgres
+    environment:
+      POSTGRES_USER: jobs
+      POSTGRES_PASSWORD: jobs
+      POSTGRES_DB: jobs
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  opensearch:
+    image: opensearchproject/opensearch:2.13.0
+    container_name: jobs-opensearch
+    environment:
+      discovery.type: single-node
+      plugins.security.disabled: "true"
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - osdata:/usr/share/opensearch/data
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: jobs-mailpit
+    ports:
+      - "8025:8025" # UI
+      - "1025:1025" # SMTP
+
+  clamav:
+    image: clamav/clamav:stable
+    container_name: jobs-clamav
+    ports:
+      - "3310:3310"
+
+volumes:
+  pgdata:
+  osdata:

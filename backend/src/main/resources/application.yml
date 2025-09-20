@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: hamediah-jobs
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jobs
+    username: jobs
+    password: jobs
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: false
+    show-sql: false
+  flyway:
+    enabled: true
+  thymeleaf:
+    cache: false
+  mail:
+    host: localhost
+    port: 1025
+  messages:
+    basename: messages
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

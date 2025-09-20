@@ -1,0 +1,63 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "autocomplete": {
+          "tokenizer": "standard",
+          "filter": ["lowercase", "edge_ngram_filter"]
+        },
+        "autocomplete_search": {
+          "tokenizer": "standard",
+          "filter": ["lowercase"]
+        }
+      },
+      "filter": {
+        "edge_ngram_filter": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 20
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id": { "type": "keyword" },
+      "title": {
+        "type": "text",
+        "analyzer": "autocomplete",
+        "search_analyzer": "autocomplete_search",
+        "fields": {
+          "en": { "type": "text", "analyzer": "english" },
+          "ar": { "type": "text", "analyzer": "arabic" },
+          "keyword": { "type": "keyword", "ignore_above": 256 }
+        }
+      },
+      "company": {
+        "type": "text",
+        "analyzer": "autocomplete",
+        "search_analyzer": "autocomplete_search",
+        "fields": {
+          "keyword": { "type": "keyword", "ignore_above": 256 }
+        }
+      },
+      "location": {
+        "type": "text",
+        "analyzer": "autocomplete",
+        "search_analyzer": "autocomplete_search",
+        "fields": {
+          "keyword": { "type": "keyword", "ignore_above": 256 }
+        }
+      },
+      "tags": { "type": "keyword" },
+      "description": {
+        "type": "text",
+        "fields": {
+          "en": { "type": "text", "analyzer": "english" },
+          "ar": { "type": "text", "analyzer": "arabic" }
+        }
+      },
+      "createdAt": { "type": "date" }
+    }
+  }
+}
