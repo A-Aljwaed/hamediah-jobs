@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: layout">
+<section class="space-y-3" th:if="${job}">
+  <p class="text-sm"><a href="/jobs" class="text-gray-600 hover:underline" th:text="#{jobs.back}">Back to jobs</a></p>
+  <h1 class="text-3xl font-bold" th:text="${job.title}">Job title</h1>
+  <p class="text-gray-700">
+    <span th:text="${job.company != null ? job.company.name : '—'}">Company</span>
+    <span> · </span>
+    <span th:text="${job.location}">Location</span>
+  </p>
+  <article class="prose max-w-none" th:utext="${#strings.escapeXml(job.description).replaceAll('\n','<br/>')}">
+    Job description...
+  </article>
+</section>
+</html>

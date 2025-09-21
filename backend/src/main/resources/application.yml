@@ -4,10 +4,16 @@ server:
 spring:
   application:
     name: hamediah-jobs
+
   datasource:
     url: jdbc:postgresql://localhost:5432/jobs
     username: jobs
     password: jobs
+
+  messages:
+    basename: messages
+    encoding: UTF-8
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -18,15 +24,17 @@ spring:
             non_contextual_creation: true
     open-in-view: false
     show-sql: false
+
   flyway:
     enabled: true
+    # Einmalig aktivieren, damit Flyway die bestehende DB als Version 1 akzeptiert:
+    baseline-on-migrate: true
+    baseline-version: 1
+    # Hilfreich: bricht ab, wenn Dateinamen nicht dem Schema entsprechen
+    validate-migration-naming: true
+
   thymeleaf:
     cache: false
-  mail:
-    host: localhost
-    port: 1025
-  messages:
-    basename: messages
 
 management:
   endpoints:

@@ -1,4 +1,4 @@
-package com.config;
+package com.hamediah.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +31,7 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
         return new InMemoryUserDetailsManager(
-            User.withUsername("admin").password(encoder.encode("password")).roles("ADMIN").build()
+          User.withUsername("admin").password(encoder.encode("password")).roles("ADMIN").build()
         );
     }
 

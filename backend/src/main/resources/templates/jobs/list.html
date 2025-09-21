@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: layout">
+<section class="space-y-4">
+  <h1 class="text-2xl font-bold" th:text="#{jobs.list.title}">Latest jobs</h1>
+
+  <form method="get" class="flex gap-2">
+    <input type="text" name="q" th:value="${q}" class="border rounded px-3 py-2 w-full" th:placeholder="#{jobs.search.placeholder}" />
+    <button class="bg-black text-white px-4 py-2 rounded" th:text="#{jobs.search.button}">Search</button>
+  </form>
+
+  <div class="grid gap-3">
+    <article class="p-4 bg-white border rounded" th:each="j : ${jobs}">
+      <div class="flex justify-between">
+        <h2 class="font-semibold text-lg">
+          <a th:href="@{/jobs/{id}(id=${j.id})}" th:text="${j.title}">Job title</a>
+        </h2>
+        <span class="text-xs text-gray-500" th:text="${#temporals.format(j.createdAt, 'yyyy-MM-dd')}">2025-01-01</span>
+      </div>
+      <p class="text-gray-700">
+        <span th:text="${j.company != null ? j.company.name : '—'}">Company</span>
+        <span> · </span>
+        <span th:text="${j.location}">Location</span>
+      </p>
+      <p class="text-gray-600 line-clamp-2" th:text="${#strings.abbreviate(j.description, 160)}">Short description...</p>
+    </article>
+    <p th:if="${#lists.isEmpty(jobs)}" class="text-gray-600" th:text="#{jobs.empty}">No jobs found.</p>
+  </div>
+</section>
+</html>
