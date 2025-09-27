@@ -24,7 +24,8 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/webjars/**", "/actuator/health").permitAll()
-                .requestMatchers("/api/**").permitAll() // Allow API access without authentication
+                .requestMatchers("/api/jobs", "/api/jobs/*", "/api/companies", "/api/companies/*").permitAll() // Allow job and company reading without authentication
+                .requestMatchers("/api/**").authenticated() // Require authentication for other API endpoints like applications and job management
                 .anyRequest().authenticated()
             )
             .formLogin(Customizer.withDefaults())

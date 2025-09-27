@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { t, i18n } = useTranslation();
+  const { isAuthenticated, user, logout } = useAuth();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -27,6 +29,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             >
               {t('nav.jobs')}
             </Link>
+            {isAuthenticated && (
+              <Link 
+                to="/create-job" 
+                className="text-sm text-gray-700 hover:text-black"
+              >
+                Create Job
+              </Link>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <button 
@@ -41,12 +51,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             >
               AR
             </button>
-            <Link 
-              to="/login" 
-              className="text-sm text-gray-700 hover:text-black"
-            >
-              {t('nav.login')}
-            </Link>
+            {isAuthenticated ? (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-700">Welcome, {user?.username}</span>
+                <button 
+                  onClick={logout}
+                  className="text-sm text-gray-700 hover:text-black"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link 
+                to="/login" 
+                className="text-sm text-gray-700 hover:text-black"
+              >
+                {t('nav.login')}
+              </Link>
+            )}
           </div>
         </div>
       </nav>
