@@ -15,3 +15,13 @@ export interface Job {
   createdAt: string;
   updatedAt?: string;
 }
+
+export interface Application {
+  id: number;
+  jobId: number;
+  applicantEmail: string;
+  applicantName: string;
+  coverLetter?: string;
+  resumeUrl?: string;
+  createdAt: string;
+}
