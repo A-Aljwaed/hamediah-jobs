@@ -7,6 +7,7 @@ import JobList from './pages/JobList';
 import JobDetail from './pages/JobDetail';
 import Login from './pages/Login';
 import CreateJob from './pages/CreateJob';
+import JobManagement from './pages/JobManagement';
 import './i18n'; // Initialize i18n
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/jobs/:id" element={<JobDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-job" element={<CreateJob />} />
+            <Route path="/manage-jobs" element={<JobManagement />} />
           </Routes>
         </Layout>
       </Router>

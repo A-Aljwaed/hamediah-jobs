@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -10,6 +10,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { t, i18n } = useTranslation();
   const { isAuthenticated, user, logout } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -40,12 +41,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   {t('nav.jobs')}
                 </Link>
                 {isAuthenticated && (
-                  <Link 
-                    to="/create-job" 
-                    className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  >
-                    Create Job
-                  </Link>
+                  <>
+                    <Link 
+                      to="/manage-jobs" 
+                      className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Manage Jobs
+                    </Link>
+                    <Link 
+                      to="/create-job" 
+                      className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Create Job
+                    </Link>
+                  </>
                 )}
               </div>
             </div>
@@ -104,8 +113,53 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   {t('nav.login')}
                 </Link>
               )}
+
+              {/* Mobile menu button */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="text-gray-700 hover:text-gray-900 p-2"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-gray-200 py-4">
+              <div className="space-y-2">
+                <Link 
+                  to="/jobs" 
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('nav.jobs')}
+                </Link>
+                {isAuthenticated && (
+                  <>
+                    <Link 
+                      to="/manage-jobs" 
+                      className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Manage Jobs
+                    </Link>
+                    <Link 
+                      to="/create-job" 
+                      className="block px-3 py-2 text-blue-600 hover:text-blue-800 font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Create Job
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
