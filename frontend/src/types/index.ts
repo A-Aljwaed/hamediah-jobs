@@ -12,6 +12,7 @@ export interface Job {
   location?: string;
   tags?: string;
   company?: Company;
+  status: 'DRAFT' | 'PUBLISHED' | 'CLOSED';
   createdAt: string;
   updatedAt?: string;
 }

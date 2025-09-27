@@ -36,9 +36,13 @@ public class Job {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(name = "status", nullable = false, length = 20) 
+    private String status = "DRAFT"; // DRAFT, PUBLISHED, CLOSED
+
     @PrePersist
     public void prePersist() {
         if (createdAt == null) createdAt = LocalDateTime.now();
+        if (status == null) status = "DRAFT";
     }
 
     @PreUpdate
@@ -63,4 +67,6 @@ public class Job {
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

@@ -38,9 +38,10 @@ public class JobApiController {
             String description = (String) request.get("description");
             String location = (String) request.get("location");
             String tags = (String) request.get("tags");
+            String status = (String) request.getOrDefault("status", "DRAFT");
             Long companyId = Long.valueOf(request.get("companyId").toString());
 
-            Job job = service.createJob(title, description, location, tags, companyId);
+            Job job = service.createJob(title, description, location, tags, companyId, status);
             return ResponseEntity.ok(job);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().build();
@@ -54,8 +55,29 @@ public class JobApiController {
             String description = (String) request.get("description");
             String location = (String) request.get("location");
             String tags = (String) request.get("tags");
+            String status = (String) request.get("status");
 
-            Job job = service.updateJob(id, title, description, location, tags);
+            Job job = service.updateJob(id, title, description, location, tags, status);
+            return ResponseEntity.ok(job);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{id}/publish")
+    public ResponseEntity<Job> publishJob(@PathVariable Long id) {
+        try {
+            Job job = service.updateJobStatus(id, "PUBLISHED");
+            return ResponseEntity.ok(job);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{id}/unpublish")
+    public ResponseEntity<Job> unpublishJob(@PathVariable Long id) {
+        try {
+            Job job = service.updateJobStatus(id, "DRAFT");
             return ResponseEntity.ok(job);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().build();
