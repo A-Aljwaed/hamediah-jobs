@@ -10,7 +10,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/jobs")
-@CrossOrigin(origins = "http://localhost:3000") // Allow React app to call this API
 public class JobApiController {
 
     private final JobService service;

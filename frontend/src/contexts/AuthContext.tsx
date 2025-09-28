@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 interface User {
   username: string;
@@ -35,8 +36,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (username: string, password: string): Promise<boolean> => {
     try {
-      // Simple mock authentication - in a real app, this would call the backend
-      if (username === 'admin' && password === 'password') {
+      // Call the backend login endpoint
+      const response = await axios.post('http://localhost:8081/login', new URLSearchParams({
+        username: username,
+        password: password,
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        withCredentials: true, // Include cookies
+      });
+      
+      // If login is successful, the backend will redirect or return success
+      if (response.status === 200) {
         const userData = { username, email: 'admin@example.com' };
         setUser(userData);
         sessionStorage.setItem('user', JSON.stringify(userData));
@@ -49,9 +61,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    sessionStorage.removeItem('user');
+  const logout = async () => {
+    try {
+      // Call the backend logout endpoint
+      await axios.post('http://localhost:8081/logout', {}, {
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      setUser(null);
+      sessionStorage.removeItem('user');
+    }
   };
 
   const value = {
