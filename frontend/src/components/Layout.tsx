@@ -16,67 +16,97 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
-      <nav className="bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="font-semibold text-lg">
-              {t('app.title')}
-            </Link>
-            <Link 
-              to="/jobs" 
-              className="text-sm text-gray-700 hover:text-black"
-            >
-              {t('nav.jobs')}
-            </Link>
-            {isAuthenticated && (
-              <Link 
-                to="/create-job" 
-                className="text-sm text-gray-700 hover:text-black"
-              >
-                Create Job
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-8">
+              <Link to="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">H</span>
+                </div>
+                <span className="font-semibold text-xl text-gray-900">
+                  {t('app.title')}
+                </span>
               </Link>
-            )}
-          </div>
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={() => changeLanguage('en')}
-              className={`text-xs px-2 py-1 border rounded ${i18n.language === 'en' ? 'bg-gray-100' : ''}`}
-            >
-              EN
-            </button>
-            <button 
-              onClick={() => changeLanguage('ar')}
-              className={`text-xs px-2 py-1 border rounded ${i18n.language === 'ar' ? 'bg-gray-100' : ''}`}
-            >
-              AR
-            </button>
-            {isAuthenticated ? (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Welcome, {user?.username}</span>
-                <button 
-                  onClick={logout}
-                  className="text-sm text-gray-700 hover:text-black"
+              <div className="hidden md:flex items-center space-x-6">
+                <Link 
+                  to="/jobs" 
+                  className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
                 >
-                  Logout
+                  {t('nav.jobs')}
+                </Link>
+                {isAuthenticated && (
+                  <Link 
+                    to="/create-job" 
+                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors duration-200"
+                  >
+                    Create Job
+                  </Link>
+                )}
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <button 
+                  onClick={() => changeLanguage('en')}
+                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                    i18n.language === 'en' 
+                      ? 'bg-primary-100 text-primary-700 border border-primary-200' 
+                      : 'text-gray-500 hover:text-gray-700 border border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  EN
+                </button>
+                <button 
+                  onClick={() => changeLanguage('ar')}
+                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                    i18n.language === 'ar' 
+                      ? 'bg-primary-100 text-primary-700 border border-primary-200' 
+                      : 'text-gray-500 hover:text-gray-700 border border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  AR
                 </button>
               </div>
-            ) : (
-              <Link 
-                to="/login" 
-                className="text-sm text-gray-700 hover:text-black"
-              >
-                {t('nav.login')}
-              </Link>
-            )}
+              
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-3">
+                  <span className="text-sm text-gray-600 hidden sm:block">
+                    Welcome, <span className="font-medium text-gray-900">{user?.username}</span>
+                  </span>
+                  <button 
+                    onClick={logout}
+                    className="text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                  >
+                    {t('nav.logout')}
+                  </button>
+                </div>
+              ) : (
+                <Link 
+                  to="/login" 
+                  className="btn-primary"
+                >
+                  {t('nav.login')}
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </nav>
-      <main className="max-w-6xl mx-auto p-4">
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
-      <footer className="max-w-6xl mx-auto p-4 text-sm text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Hamediah.</p>
+      
+      <footer className="bg-white border-t border-gray-200 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="text-center text-sm text-gray-500">
+            <p>&copy; {new Date().getFullYear()} Hamediah. All rights reserved.</p>
+            <p className="mt-1">Building the future of work in the Middle East.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
