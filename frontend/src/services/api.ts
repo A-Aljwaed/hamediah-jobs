@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { Job, Company } from '../types';
 
-const API_BASE = 'http://localhost:8080/api';
+const API_BASE = 'http://localhost:8081/api';
 
 const api = axios.create({
   baseURL: API_BASE,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // Include cookies for session-based authentication
 });
 
 export const jobService = {
