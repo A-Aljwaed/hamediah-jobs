@@ -30,6 +30,7 @@ export const jobService = {
     location: string;
     tags: string;
     companyId: number;
+    status?: 'DRAFT' | 'PUBLISHED';
   }): Promise<Job> {
     const response = await api.post('/jobs', jobData);
     return response.data;
@@ -40,6 +41,7 @@ export const jobService = {
     description: string;
     location: string;
     tags: string;
+    status?: 'DRAFT' | 'PUBLISHED' | 'CLOSED';
   }): Promise<Job> {
     const response = await api.put(`/jobs/${id}`, jobData);
     return response.data;
@@ -47,6 +49,16 @@ export const jobService = {
 
   async deleteJob(id: number): Promise<void> {
     await api.delete(`/jobs/${id}`);
+  },
+
+  async publishJob(id: number): Promise<Job> {
+    const response = await api.put(`/jobs/${id}/publish`);
+    return response.data;
+  },
+
+  async unpublishJob(id: number): Promise<Job> {
+    const response = await api.put(`/jobs/${id}/unpublish`);
+    return response.data;
   },
 };
 

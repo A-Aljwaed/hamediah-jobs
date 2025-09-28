@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -10,73 +10,171 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { t, i18n } = useTranslation();
   const { isAuthenticated, user, logout } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
-      <nav className="bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="font-semibold text-lg">
-              {t('app.title')}
-            </Link>
-            <Link 
-              to="/jobs" 
-              className="text-sm text-gray-700 hover:text-black"
-            >
-              {t('nav.jobs')}
-            </Link>
-            {isAuthenticated && (
-              <Link 
-                to="/create-job" 
-                className="text-sm text-gray-700 hover:text-black"
-              >
-                Create Job
+    <div className="min-h-screen bg-gray-50" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+      {/* Modern Navigation Bar */}
+      <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo and Primary Navigation */}
+            <div className="flex items-center space-x-8">
+              <Link to="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">H</span>
+                </div>
+                <span className="text-xl font-semibold text-gray-900">
+                  {t('app.title')}
+                </span>
               </Link>
-            )}
-          </div>
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={() => changeLanguage('en')}
-              className={`text-xs px-2 py-1 border rounded ${i18n.language === 'en' ? 'bg-gray-100' : ''}`}
-            >
-              EN
-            </button>
-            <button 
-              onClick={() => changeLanguage('ar')}
-              className={`text-xs px-2 py-1 border rounded ${i18n.language === 'ar' ? 'bg-gray-100' : ''}`}
-            >
-              AR
-            </button>
-            {isAuthenticated ? (
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Welcome, {user?.username}</span>
-                <button 
-                  onClick={logout}
-                  className="text-sm text-gray-700 hover:text-black"
+              
+              <div className="hidden md:flex items-center space-x-6">
+                <Link 
+                  to="/jobs" 
+                  className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
-                  Logout
+                  {t('nav.jobs')}
+                </Link>
+                {isAuthenticated && (
+                  <>
+                    <Link 
+                      to="/manage-jobs" 
+                      className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Manage Jobs
+                    </Link>
+                    <Link 
+                      to="/create-job" 
+                      className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Create Job
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Right Side Navigation */}
+            <div className="flex items-center space-x-4">
+              {/* Language Switcher */}
+              <div className="flex items-center space-x-1 bg-gray-100 rounded-lg p-1">
+                <button 
+                  onClick={() => changeLanguage('en')}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-colors duration-200 ${
+                    i18n.language === 'en' 
+                      ? 'bg-white text-gray-900 shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  EN
+                </button>
+                <button 
+                  onClick={() => changeLanguage('ar')}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-colors duration-200 ${
+                    i18n.language === 'ar' 
+                      ? 'bg-white text-gray-900 shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  AR
                 </button>
               </div>
-            ) : (
-              <Link 
-                to="/login" 
-                className="text-sm text-gray-700 hover:text-black"
-              >
-                {t('nav.login')}
-              </Link>
-            )}
+
+              {/* User Authentication */}
+              {isAuthenticated ? (
+                <div className="flex items-center space-x-3">
+                  <div className="hidden sm:flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm font-medium">
+                        {user?.username?.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <span className="text-sm text-gray-700">
+                      {user?.username}
+                    </span>
+                  </div>
+                  <button 
+                    onClick={logout}
+                    className="text-gray-700 hover:text-red-600 text-sm font-medium transition-colors duration-200"
+                  >
+                    {t('nav.logout')}
+                  </button>
+                </div>
+              ) : (
+                <Link 
+                  to="/login" 
+                  className="bg-gray-900 text-white hover:bg-gray-800 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                >
+                  {t('nav.login')}
+                </Link>
+              )}
+
+              {/* Mobile menu button */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="text-gray-700 hover:text-gray-900 p-2"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-gray-200 py-4">
+              <div className="space-y-2">
+                <Link 
+                  to="/jobs" 
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t('nav.jobs')}
+                </Link>
+                {isAuthenticated && (
+                  <>
+                    <Link 
+                      to="/manage-jobs" 
+                      className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Manage Jobs
+                    </Link>
+                    <Link 
+                      to="/create-job" 
+                      className="block px-3 py-2 text-blue-600 hover:text-blue-800 font-medium"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Create Job
+                    </Link>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
-      <main className="max-w-6xl mx-auto p-4">
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
-      <footer className="max-w-6xl mx-auto p-4 text-sm text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Hamediah.</p>
+
+      {/* Modern Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="text-center text-sm text-gray-500">
+            <p>&copy; {new Date().getFullYear()} Hamediah. Built with modern technology.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );

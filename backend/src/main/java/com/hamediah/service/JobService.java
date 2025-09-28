@@ -32,7 +32,7 @@ public class JobService {
         return repo.findById(id);
     }
 
-    public Job createJob(String title, String description, String location, String tags, Long companyId) {
+    public Job createJob(String title, String description, String location, String tags, Long companyId, String status) {
         Optional<Company> company = companyRepo.findById(companyId);
         if (company.isEmpty()) {
             throw new RuntimeException("Company not found");
@@ -43,12 +43,18 @@ public class JobService {
         job.setDescription(description);
         job.setLocation(location);
         job.setTags(tags);
+        job.setStatus(status);
         job.setCompany(company.get());
 
         return repo.save(job);
     }
 
-    public Job updateJob(Long id, String title, String description, String location, String tags) {
+    // Backward compatibility method
+    public Job createJob(String title, String description, String location, String tags, Long companyId) {
+        return createJob(title, description, location, tags, companyId, "DRAFT");
+    }
+
+    public Job updateJob(Long id, String title, String description, String location, String tags, String status) {
         Optional<Job> existingJob = repo.findById(id);
         if (existingJob.isEmpty()) {
             throw new RuntimeException("Job not found");
@@ -59,7 +65,26 @@ public class JobService {
         job.setDescription(description);
         job.setLocation(location);
         job.setTags(tags);
+        if (status != null) {
+            job.setStatus(status);
+        }
 
+        return repo.save(job);
+    }
+
+    // Backward compatibility method  
+    public Job updateJob(Long id, String title, String description, String location, String tags) {
+        return updateJob(id, title, description, location, tags, null);
+    }
+    
+    public Job updateJobStatus(Long id, String status) {
+        Optional<Job> existingJob = repo.findById(id);
+        if (existingJob.isEmpty()) {
+            throw new RuntimeException("Job not found");
+        }
+
+        Job job = existingJob.get();
+        job.setStatus(status);
         return repo.save(job);
     }
 

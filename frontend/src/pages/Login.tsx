@@ -32,52 +32,95 @@ const Login: React.FC = () => {
   };
 
   return (
-    <section className="max-w-sm mx-auto space-y-4">
-      <h1 className="text-2xl font-bold">{t('auth.login.title')}</h1>
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-          {error}
+    <div className="min-h-[80vh] flex items-center justify-center">
+      <div className="max-w-md w-full space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900">{t('auth.login.title')}</h1>
+          <p className="text-gray-600 mt-2">Access your account to manage job postings</p>
         </div>
-      )}
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <div>
-          <label className="block text-sm mb-1">
-            {t('auth.username')}
-          </label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="border rounded w-full px-3 py-2"
-            required
-            disabled={loading}
-          />
+
+        {/* Login Form */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+              <div className="flex items-center">
+                <svg className="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-red-800 text-sm font-medium">{error}</span>
+              </div>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                {t('auth.username')}
+              </label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                placeholder="Enter your username"
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
+                {t('auth.password')}
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
+                placeholder="Enter your password"
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <button 
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Signing in...
+                </div>
+              ) : (
+                <>
+                  <svg className="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                  {t('auth.login.button')}
+                </>
+              )}
+            </button>
+          </form>
         </div>
-        <div>
-          <label className="block text-sm mb-1">
-            {t('auth.password')}
-          </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border rounded w-full px-3 py-2"
-            required
-            disabled={loading}
-          />
+
+        {/* Demo Credentials */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+          <h3 className="text-sm font-semibold text-blue-900 mb-2">Demo Credentials</h3>
+          <div className="text-sm text-blue-800">
+            <p><strong>Username:</strong> admin</p>
+            <p><strong>Password:</strong> password</p>
+          </div>
         </div>
-        <button 
-          type="submit"
-          className="bg-black text-white w-full py-2 rounded disabled:opacity-50"
-          disabled={loading}
-        >
-          {loading ? 'Logging in...' : t('auth.login.button')}
-        </button>
-      </form>
-      <div className="text-sm text-gray-600 text-center">
-        Default credentials: admin / password
       </div>
-    </section>
+    </div>
   );
 };
 
