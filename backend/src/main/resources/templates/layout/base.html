@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layout"
+      th:lang="${#locale}"
+      th:attr="dir=${#locale.language == 'ar' ? 'rtl' : 'ltr'}">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,23 +17,41 @@
             <a href="/" class="font-semibold text-lg" th:text="#{app.title}">Hamediah Jobs</a>
             <a href="/jobs" class="text-sm text-gray-700 hover:text-black" th:text="#{nav.jobs}">Jobs</a>
         </div>
+
+        <form action="/jobs" method="get" class="hidden md:flex items-center gap-2 w-full max-w-md mx-4">
+            <input type="text" name="q" class="border rounded px-3 py-2 w-full"
+                   th:placeholder="#{jobs.search.placeholder}" placeholder="Search jobs" />
+            <button class="bg-black text-white px-3 py-2 rounded" th:text="#{jobs.search.button}">Search</button>
+        </form>
+
         <div class="flex items-center gap-3">
-            <a th:href="@{?lang=en}" class="text-xs px-2 py-1 border rounded">EN</a>
-            <a th:href="@{?lang=ar}" class="text-xs px-2 py-1 border rounded">AR</a>
+            <a th:href="@{/?(lang='en')}" class="text-xs px-2 py-1 border rounded">EN</a>
+            <a th:href="@{/?(lang='ar')}" class="text-xs px-2 py-1 border rounded">AR</a>
 
             <a href="/login" class="text-sm text-gray-700 hover:text-black" sec:authorize="!isAuthenticated()" th:text="#{nav.login}">Login</a>
 
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <button class="text-sm text-gray-700 hover:text-black" th:text="#{nav.logout}">Logout</button>
             </form>
         </div>
     </div>
+
+    <div class="md:hidden px-4 pb-3">
+        <form action="/jobs" method="get" class="flex items-center gap-2">
+            <input type="text" name="q" class="border rounded px-3 py-2 w-full"
+                   th:placeholder="#{jobs.search.placeholder}" placeholder="Search jobs" />
+            <button class="bg-black text-white px-3 py-2 rounded" th:text="#{jobs.search.button}">Search</button>
+        </form>
+    </div>
 </nav>
+
 <main class="max-w-6xl mx-auto p-4">
     <div th:replace="~{::section}"></div>
 </main>
+
 <footer class="max-w-6xl mx-auto p-4 text-sm text-gray-500">
-    <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Hamediah.</p>
+    <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Hamediah</p>
 </footer>
 </body>
 </html>
