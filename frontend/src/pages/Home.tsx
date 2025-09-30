@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent } from '../components/ui/Card';
+import { Badge } from '../components/ui/Badge';
+import { Input } from '../components/ui/Input';
+import { Search, MapPin, Briefcase, Users, Building, TrendingUp } from 'lucide-react';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -26,57 +31,47 @@ const Home: React.FC = () => {
           
           {/* Modern Search Bar */}
           <div className="max-w-4xl mx-auto mb-12 animate-bounce-in">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20" padding="lg">
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    placeholder="Job title, keywords, or company"
-                    className="w-full px-4 py-3 rounded-lg border border-white/30 bg-white/90 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
-                  />
-                  <svg className="absolute right-3 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    placeholder="Location"
-                    className="w-full px-4 py-3 rounded-lg border border-white/30 bg-white/90 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
-                  />
-                  <svg className="absolute right-3 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  </svg>
-                </div>
-                <button className="btn-primary py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
+                <Input
+                  placeholder="Job title, keywords, or company"
+                  className="bg-white/90 border-white/30 focus:ring-white/50"
+                  rightIcon={<Search className="h-4 w-4" />}
+                />
+                <Input
+                  placeholder="Location"
+                  className="bg-white/90 border-white/30 focus:ring-white/50"
+                  rightIcon={<MapPin className="h-4 w-4" />}
+                />
+                <Button 
+                  variant="secondary" 
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-white/30 text-white"
+                >
+                  <Search className="w-4 h-4 mr-2" />
                   Search Jobs
-                </button>
+                </Button>
               </div>
-            </div>
+            </Card>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-bounce-in">
-            <Link 
-              to="/jobs" 
-              className="btn-primary text-lg px-8 py-4 inline-flex items-center gap-2"
+            <Button asChild size="lg" className="text-lg px-8 py-4">
+              <Link to="/jobs">
+                <Search className="w-4 h-4 mr-2" />
+                {t('index.cta.explore')}
+              </Link>
+            </Button>
+            <Button 
+              asChild 
+              variant="secondary" 
+              size="lg" 
+              className="text-lg px-8 py-4 bg-white/20 border-white/30 text-white hover:bg-white/30"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              {t('index.cta.explore')}
-            </Link>
-            <Link 
-              to="/login" 
-              className="btn-secondary text-lg px-8 py-4 bg-white/20 border-white/30 text-white hover:bg-white/30 inline-flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              {t('nav.login')}
-            </Link>
+              <Link to="/login">
+                <Users className="w-4 h-4 mr-2" />
+                {t('nav.login')}
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
