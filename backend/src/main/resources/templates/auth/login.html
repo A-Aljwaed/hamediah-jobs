@@ -2,16 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: layout">
 <section class="max-w-sm mx-auto space-y-4">
   <h1 class="text-2xl font-bold" th:text="#{auth.login.title}">Sign in</h1>
+
+  <div th:if="${param.error}" class="p-3 rounded bg-red-50 text-red-700 text-sm">
+    <span th:text="#{auth.login.error}">Invalid username or password.</span>
+  </div>
+  <div th:if="${param.logout}" class="p-3 rounded bg-green-50 text-green-700 text-sm">
+    <span th:text="#{auth.logout.success}">You have been logged out.</span>
+  </div>
+
   <form th:action="@{/login}" method="post" class="space-y-3">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <div>
       <label class="block text-sm mb-1" th:text="#{auth.username}">Username</label>
-      <input class="border rounded w-full px-3 py-2" type="text" name="username" />
+      <input class="border rounded w-full px-3 py-2" type="text" name="username" autocomplete="username" />
     </div>
     <div>
       <label class="block text-sm mb-1" th:text="#{auth.password}">Password</label>
-      <input class="border rounded w-full px-3 py-2" type="password" name="password" />
+      <input class="border rounded w-full px-3 py-2" type="password" name="password" autocomplete="current-password" />
     </div>
     <button class="bg-black text-white w-full py-2 rounded" th:text="#{auth.login.button}">Login</button>
   </form>
+
+  <p class="text-xs text-gray-500">admin / password (dev)</p>
 </section>
 </html>
