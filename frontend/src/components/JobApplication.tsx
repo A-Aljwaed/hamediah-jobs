@@ -50,7 +50,7 @@ const JobApplication: React.FC<JobApplicationProps> = ({
       // Show warnings if any
       if (validationResult.warnings && validationResult.warnings.length > 0) {
         validationResult.warnings.forEach(warning => {
-          toast.warning(warning, { duration: 3000 });
+          toast.error(warning, { duration: 3000 });
         });
       }
       
@@ -231,7 +231,7 @@ const JobApplication: React.FC<JobApplicationProps> = ({
                 <div className="flex items-center justify-center gap-2">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-6 h-6 text-green-600" />
-                    <Shield className="w-4 h-4 text-green-600" title="Security validated" />
+                    <Shield className="w-4 h-4 text-green-600" />
                   </div>
                   <div>
                     <p className="font-medium text-green-900">{resumeFile.name}</p>
