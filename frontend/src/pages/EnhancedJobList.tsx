@@ -183,7 +183,10 @@ const EnhancedJobList: React.FC = () => {
       if (results.length === 0 && (filters.query || Object.values(filters).some(v => 
         Array.isArray(v) ? v.length > 0 : v !== '' && v !== false && v !== 'any'
       ))) {
-        toast.info('No jobs found matching your criteria. Try adjusting your filters.');
+        toast('No jobs found matching your criteria. Try adjusting your filters.', { 
+          icon: 'ℹ️',
+          duration: 4000 
+        });
       }
     } catch (error) {
       console.error('Search error:', error);

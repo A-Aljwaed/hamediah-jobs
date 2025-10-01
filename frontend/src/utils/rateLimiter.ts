@@ -104,7 +104,7 @@ class RateLimiter {
    */
   cleanup(): void {
     const now = Date.now();
-    for (const [key, record] of this.attempts.entries()) {
+    for (const [key, record] of Array.from(this.attempts.entries())) {
       // Remove records that are past their window and not blocked
       if (now - record.firstAttempt > this.config.windowMs && 
           (!record.blockedUntil || now > record.blockedUntil)) {

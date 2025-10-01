@@ -4,6 +4,7 @@ import axios from 'axios';
 interface User {
   username: string;
   email: string;
+  role?: string;
 }
 
 interface AuthContextType {
