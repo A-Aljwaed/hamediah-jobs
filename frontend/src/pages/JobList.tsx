@@ -8,7 +8,7 @@ import { Card, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { SkeletonJobCard } from '../components/ui/Skeleton';
-import { Search, MapPin, Building, Calendar, Heart, Filter, SortAsc, AlertCircle, Briefcase } from 'lucide-react';
+import { Icon } from '../components/ui/Icon';
 
 const JobList: React.FC = () => {
   const { t } = useTranslation();
@@ -82,7 +82,7 @@ const JobList: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center">
         <Card className="text-center max-w-md" padding="lg">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertCircle className="w-8 h-8 text-red-600" />
+            <Icon name="alert-triangle" size="24" className="text-red-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Oops! Something went wrong</h3>
           <p className="text-gray-600 mb-4">{error}</p>
@@ -117,7 +117,7 @@ const JobList: React.FC = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 className="text-lg py-4 rounded-2xl"
                 placeholder={t('jobs.search.placeholder')}
-                leftIcon={<Search className="h-5 w-5" />}
+                leftIcon="search"
               />
               <Button type="submit" size="lg" className="px-8">
                 {t('jobs.search.button')}
@@ -148,12 +148,12 @@ const JobList: React.FC = () => {
             
             {/* Filter buttons */}
             <div className="flex gap-2">
-              <Button variant="secondary" size="sm">
-                <Filter className="w-4 h-4 mr-2" />
+              <Button variant="secondary" size="sm" className="gap-2">
+                <Icon name="filter" size="16" />
                 Filters
               </Button>
-              <Button variant="secondary" size="sm">
-                <SortAsc className="w-4 h-4 mr-2" />
+              <Button variant="secondary" size="sm" className="gap-2">
+                <Icon name="arrow-right" size="16" />
                 Sort by
               </Button>
             </div>
@@ -164,7 +164,7 @@ const JobList: React.FC = () => {
             {jobs.length === 0 ? (
               <Card className="text-center py-16" padding="lg">
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Briefcase className="w-12 h-12 text-gray-400" />
+                  <Icon name="briefcase" size="24" className="text-gray-400" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No jobs found</h3>
                 <p className="text-gray-600 mb-6">{t('jobs.empty')}</p>
@@ -197,18 +197,18 @@ const JobList: React.FC = () => {
                             </Link>
                           </h2>
                           <div className="flex items-center gap-1 text-sm text-gray-500 whitespace-nowrap ml-4">
-                            <Calendar className="w-4 h-4" />
+                            <Icon name="calendar" size="16" />
                             {formatDate(job.createdAt)}
                           </div>
                         </div>
                         
                         <div className="flex flex-wrap items-center gap-4 mb-3 text-gray-600">
                           <div className="flex items-center gap-1">
-                            <Building className="w-4 h-4" />
+                            <Icon name="building" size="16" />
                             <span className="font-medium">{job.company?.name || '—'}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <MapPin className="w-4 h-4" />
+                            <Icon name="location" size="16" />
                             <span>{job.location || '—'}</span>
                           </div>
                         </div>
@@ -232,8 +232,8 @@ const JobList: React.FC = () => {
                             View Details
                           </Link>
                         </Button>
-                        <Button variant="secondary">
-                          <Heart className="w-4 h-4 mr-2" />
+                        <Button variant="secondary" className="gap-2">
+                          <Icon name="heart" size="16" />
                           Save Job
                         </Button>
                       </div>

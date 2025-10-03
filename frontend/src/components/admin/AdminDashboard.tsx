@@ -4,28 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Input } from '../ui/Input';
-import { 
-  Users, 
-  Briefcase, 
-  AlertTriangle, 
-  CheckCircle, 
-  XCircle,
-  Eye,
-  Edit,
-  Trash2,
-  Search,
-  Filter,
-  MoreHorizontal,
-  TrendingUp,
-  TrendingDown,
-  Calendar,
-  Clock,
-  Shield,
-  Flag,
-  UserCheck,
-  UserX,
-  Building
-} from 'lucide-react';
+import { Icon } from '../ui/Icon';
 
 interface AdminStats {
   totalUsers: number;
@@ -240,12 +219,12 @@ const AdminDashboard: React.FC = () => {
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Users</p>
                 <p className="text-2xl font-bold text-gray-900">{stats.totalUsers.toLocaleString()}</p>
-                <div className="flex items-center mt-1">
-                  <TrendingUp className="w-4 h-4 text-green-600 mr-1" />
+                <div className="flex items-center gap-1 mt-1">
+                  <Icon name="trending-up" size="16" className="text-green-600" />
                   <span className="text-sm text-green-600">+{stats.userGrowth}%</span>
                 </div>
               </div>
-              <Users className="w-8 h-8 text-blue-600" />
+              <Icon name="users" size="24" className="text-blue-600" />
             </div>
           </CardContent>
         </Card>
@@ -256,12 +235,12 @@ const AdminDashboard: React.FC = () => {
               <div>
                 <p className="text-sm font-medium text-gray-600">Active Jobs</p>
                 <p className="text-2xl font-bold text-gray-900">{stats.activeJobs.toLocaleString()}</p>
-                <div className="flex items-center mt-1">
-                  <TrendingUp className="w-4 h-4 text-green-600 mr-1" />
+                <div className="flex items-center gap-1 mt-1">
+                  <Icon name="trending-up" size="16" className="text-green-600" />
                   <span className="text-sm text-green-600">+{stats.jobGrowth}%</span>
                 </div>
               </div>
-              <Briefcase className="w-8 h-8 text-green-600" />
+              <Icon name="briefcase" size="24" className="text-green-600" />
             </div>
           </CardContent>
         </Card>
@@ -274,7 +253,7 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-2xl font-bold text-gray-900">{stats.pendingJobs}</p>
                 <p className="text-sm text-gray-600 mt-1">Jobs awaiting approval</p>
               </div>
-              <Clock className="w-8 h-8 text-yellow-600" />
+              <Icon name="clock" size="24" className="text-yellow-600" />
             </div>
           </CardContent>
         </Card>
@@ -287,7 +266,7 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-2xl font-bold text-gray-900">{stats.flaggedContent}</p>
                 <p className="text-sm text-gray-600 mt-1">Requires attention</p>
               </div>
-              <AlertTriangle className="w-8 h-8 text-red-600" />
+              <Icon name="alert-triangle" size="24" className="text-red-600" />
             </div>
           </CardContent>
         </Card>
@@ -360,7 +339,7 @@ const AdminDashboard: React.FC = () => {
             placeholder="Search jobs..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            leftIcon={<Search className="w-4 h-4" />}
+            leftIcon="search"
           />
         </div>
         <select
@@ -399,8 +378,7 @@ const AdminDashboard: React.FC = () => {
                         <p className="font-medium text-gray-900">{job.title}</p>
                         {job.flagReason && (
                           <p className="text-sm text-red-600 flex items-center gap-1">
-                            <Flag className="w-3 h-3" />
-                            {job.flagReason}
+                            <Icon name="flag" size="16" />                            {job.flagReason}
                           </p>
                         )}
                       </div>
@@ -421,13 +399,13 @@ const AdminDashboard: React.FC = () => {
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         <Button size="sm" variant="ghost">
-                          <Eye className="w-4 h-4" />
+                          <Icon name="eye" size="16" />
                         </Button>
                         <Button size="sm" variant="ghost">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <Icon name="check-circle" size="16" className="text-green-600" />
                         </Button>
                         <Button size="sm" variant="ghost">
-                          <XCircle className="w-4 h-4 text-red-600" />
+                          <Icon name="x-circle" size="16" className="text-red-600" />
                         </Button>
                       </div>
                     </td>
@@ -451,7 +429,7 @@ const AdminDashboard: React.FC = () => {
             placeholder="Search users..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            leftIcon={<Search className="w-4 h-4" />}
+            leftIcon="search"
           />
         </div>
         <select
@@ -510,13 +488,13 @@ const AdminDashboard: React.FC = () => {
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         <Button size="sm" variant="ghost">
-                          <Eye className="w-4 h-4" />
+                          <Icon name="eye" className="w-4 h-4" />
                         </Button>
                         <Button size="sm" variant="ghost">
-                          <Edit className="w-4 h-4" />
+                          <Icon name="edit" className="w-4 h-4" />
                         </Button>
                         <Button size="sm" variant="ghost">
-                          <UserX className="w-4 h-4 text-red-600" />
+                          <Icon name="user-x" className="w-4 h-4 text-red-600" />
                         </Button>
                       </div>
                     </td>
@@ -540,7 +518,7 @@ const AdminDashboard: React.FC = () => {
             placeholder="Search reports..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            leftIcon={<Search className="w-4 h-4" />}
+            leftIcon="search"
           />
         </div>
         <select
@@ -597,13 +575,13 @@ const AdminDashboard: React.FC = () => {
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         <Button size="sm" variant="ghost">
-                          <Eye className="w-4 h-4" />
+                          <Icon name="eye" size="16" />
                         </Button>
                         <Button size="sm" variant="ghost">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <Icon name="check-circle" size="16" className="text-green-600" />
                         </Button>
                         <Button size="sm" variant="ghost">
-                          <XCircle className="w-4 h-4 text-red-600" />
+                          <Icon name="x-circle" size="16" className="text-red-600" />
                         </Button>
                       </div>
                     </td>
@@ -623,7 +601,7 @@ const AdminDashboard: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-            <Shield className="w-8 h-8 text-primary-600" />
+            <Icon name="shield" size="24" className="text-primary-600" />
             Admin Dashboard
           </h1>
           <p className="text-gray-600 mt-1">
@@ -632,12 +610,12 @@ const AdminDashboard: React.FC = () => {
         </div>
         
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
-            <Calendar className="w-4 h-4 mr-2" />
+          <Button variant="outline" size="sm" className="gap-2">
+            <Icon name="calendar" size="16" />
             Export Report
           </Button>
-          <Button size="sm">
-            <AlertTriangle className="w-4 h-4 mr-2" />
+          <Button size="sm" className="gap-2">
+            <Icon name="alert-triangle" size="16" />
             View Alerts
           </Button>
         </div>
@@ -647,12 +625,12 @@ const AdminDashboard: React.FC = () => {
       <div className="border-b border-gray-200">
         <nav className="flex space-x-8">
           {[
-            { id: 'overview', label: 'Overview', icon: TrendingUp },
-            { id: 'jobs', label: 'Job Moderation', icon: Briefcase },
-            { id: 'users', label: 'User Management', icon: Users },
-            { id: 'reports', label: 'Content Reports', icon: Flag }
+            { id: 'overview', label: 'Overview', icon: 'trending-up' },
+            { id: 'jobs', label: 'Job Moderation', icon: 'briefcase' },
+            { id: 'users', label: 'User Management', icon: 'users' },
+            { id: 'reports', label: 'Content Reports', icon: 'flag' }
           ].map(tab => {
-            const Icon = tab.icon;
+            const IconName = tab.icon;
             return (
               <button
                 key={tab.id}
@@ -663,7 +641,7 @@ const AdminDashboard: React.FC = () => {
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon name={IconName} size="16" />
                 {tab.label}
               </button>
             );

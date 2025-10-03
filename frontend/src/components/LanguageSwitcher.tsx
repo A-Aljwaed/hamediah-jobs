@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from './ui/Button';
-import { Globe } from 'lucide-react';
+import { Icon } from './ui/Icon';
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
@@ -22,7 +22,7 @@ const LanguageSwitcher: React.FC = () => {
       className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
       title={`Switch to ${nextLanguage}`}
     >
-      <Globe className="w-4 h-4" />
+      <Icon name="globe" size="16" aria-hidden="true" />
       <span className="hidden sm:inline">{currentLanguage}</span>
     </Button>
   );

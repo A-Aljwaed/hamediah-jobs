@@ -4,27 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Input } from '../ui/Input';
-import { 
-  AlertTriangle, 
-  CheckCircle, 
-  XCircle,
-  Eye,
-  Flag,
-  MessageSquare,
-  Clock,
-  User,
-  Briefcase,
-  FileText,
-  Shield,
-  Bot,
-  Search,
-  Filter,
-  MoreHorizontal,
-  ThumbsUp,
-  ThumbsDown,
-  Archive,
-  Trash2
-} from 'lucide-react';
+import { Icon } from '../ui/Icon';
 
 interface ModerationItem {
   id: string;
@@ -258,11 +238,11 @@ const ContentModeration: React.FC = () => {
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'job': return <Briefcase className="w-4 h-4" />;
-      case 'user_profile': return <User className="w-4 h-4" />;
-      case 'application': return <FileText className="w-4 h-4" />;
-      case 'comment': return <MessageSquare className="w-4 h-4" />;
-      default: return <FileText className="w-4 h-4" />;
+      case 'job': return <Icon name="briefcase" size="16" />;
+      case 'user_profile': return <Icon name="user" size="16" />;
+      case 'application': return <Icon name="file-text" size="16" />;
+      case 'comment': return <Icon name="message-square" size="16" />;
+      default: return <Icon name="file-text" size="16" />;
     }
   };
 
@@ -282,7 +262,7 @@ const ContentModeration: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-            <Shield className="w-8 h-8 text-primary-600" />
+            <Icon name="shield" size="24" className="text-primary-600" />
             Content Moderation
           </h1>
           <p className="text-gray-600 mt-1">
@@ -292,11 +272,11 @@ const ContentModeration: React.FC = () => {
         
         <div className="flex items-center gap-2">
           <Badge variant="secondary" className="flex items-center gap-1">
-            <Clock className="w-3 h-3" />
+            <Icon name="clock" size="16" />
             {filteredItems.filter(item => item.status === 'pending').length} Pending
           </Badge>
           <Badge variant="secondary" className="flex items-center gap-1">
-            <AlertTriangle className="w-3 h-3" />
+            <Icon name="alert-triangle" size="16" />
             {filteredItems.filter(item => item.priority === 'high' || item.priority === 'critical').length} High Priority
           </Badge>
         </div>
@@ -311,7 +291,7 @@ const ContentModeration: React.FC = () => {
               placeholder="Search content..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              leftIcon={<Search className="w-4 h-4" />}
+              leftIcon='search'
             />
             
             <select
@@ -350,8 +330,8 @@ const ContentModeration: React.FC = () => {
               <option value="low">Low</option>
             </select>
 
-            <Button variant="outline" className="flex items-center gap-2">
-              <Filter className="w-4 h-4" />
+            <Button variant="outline" className="gap-2">
+              <Icon name="filter" size="16" />
               Advanced
             </Button>
           </div>
@@ -396,22 +376,22 @@ const ContentModeration: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4 text-sm text-gray-500">
                     <div className="flex items-center gap-1">
-                      <User className="w-3 h-3" />
+                      <Icon name="user" size="16" />
                       {item.author.username}
                     </div>
                     <div className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
+                      <Icon name="clock" size="16" />
                       {formatDate(item.submittedAt)}
                     </div>
                     <div className="flex items-center gap-1">
-                      <Flag className="w-3 h-3" />
+                      <Icon name="flag" size="16" />
                       {item.flags.length} flags
                     </div>
                   </div>
 
                   {item.autoFlags.length > 0 && (
                     <div className="flex items-center gap-1 text-xs text-blue-600">
-                      <Bot className="w-3 h-3" />
+                      <Icon name="bot" size="16" />
                       Auto-flagged
                     </div>
                   )}
@@ -441,7 +421,7 @@ const ContentModeration: React.FC = () => {
           {filteredItems.length === 0 && (
             <Card>
               <CardContent className="text-center py-12">
-                <Shield className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <Icon name="shield" size="24" className="text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No items to moderate
                 </h3>
@@ -493,7 +473,7 @@ const ContentModeration: React.FC = () => {
                 {selectedItem.autoFlags.length > 0 && (
                   <div>
                     <h5 className="font-medium text-gray-900 mb-2 flex items-center gap-1">
-                      <Bot className="w-4 h-4" />
+                      <Icon name="bot" size="16" />
                       Auto Flags
                     </h5>
                     <div className="space-y-2">
@@ -541,28 +521,28 @@ const ContentModeration: React.FC = () => {
                     <h5 className="font-medium text-gray-900 mb-2">Moderation Actions</h5>
                     
                     <Button 
-                      className="w-full flex items-center gap-2"
+                      className="w-full gap-2"
                       onClick={() => handleModerationAction(selectedItem.id, 'approve', 'Content approved after review')}
                     >
-                      <CheckCircle className="w-4 h-4" />
+                      <Icon name="check-circle" size="16" />
                       Approve
                     </Button>
                     
                     <Button 
                       variant="destructive" 
-                      className="w-full flex items-center gap-2"
+                      className="w-full gap-2"
                       onClick={() => handleModerationAction(selectedItem.id, 'reject', 'Content violates community guidelines')}
                     >
-                      <XCircle className="w-4 h-4" />
+                      <Icon name="x-circle" size="16" />
                       Reject
                     </Button>
                     
                     <Button 
                       variant="outline" 
-                      className="w-full flex items-center gap-2"
+                      className="w-full gap-2"
                       onClick={() => handleModerationAction(selectedItem.id, 'escalate', 'Requires senior moderator review')}
                     >
-                      <AlertTriangle className="w-4 h-4" />
+                      <Icon name="alert-triangle" size="16" />
                       Escalate
                     </Button>
                   </div>
@@ -572,7 +552,7 @@ const ContentModeration: React.FC = () => {
           ) : (
             <Card className="sticky top-4">
               <CardContent className="text-center py-12">
-                <Eye className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <Icon name="eye" size="24" className="text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   Select an item to review
                 </h3>
