@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Job } from '../types';
 import { jobService } from '../services/api';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import { Card } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
 import { SkeletonJobCard } from '../components/ui/Skeleton';
 import { Icon } from '../components/ui/Icon';
 import JobFilterSidebar, { FilterOptions } from '../components/JobFilterSidebar';
+import JobCard from '../components/JobCard';
+import toast from 'react-hot-toast';
 
 type SortOption = 'relevance' | 'date' | 'salary';
 
@@ -23,6 +24,7 @@ const JobList: React.FC = () => {
   const [sortBy, setSortBy] = useState<SortOption>('relevance');
   const [currentPage, setCurrentPage] = useState(1);
   const jobsPerPage = 10;
+  const [savedJobs, setSavedJobs] = useState<Set<number>>(new Set());
   
   const [filters, setFilters] = useState<FilterOptions>({
     jobType: [],
@@ -121,14 +123,19 @@ const JobList: React.FC = () => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages));
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString();
-  };
-
-  const truncateText = (text: string, maxLength: number) => {
-    if (text.length <= maxLength) return text;
-    return text.substr(0, maxLength) + '...';
-  };
+  const handleSaveJob = useCallback((jobId: number) => {
+    setSavedJobs(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(jobId)) {
+        newSet.delete(jobId);
+        toast.success('Job removed from saved');
+      } else {
+        newSet.add(jobId);
+        toast.success('Job saved successfully!');
+      }
+      return newSet;
+    });
+  }, []);
 
   if (loading) {
     return (
@@ -279,70 +286,13 @@ const JobList: React.FC = () => {
                   </Card>
                 ) : (
                   paginatedJobs.map((job, index) => (
-                    <Card 
-                      key={job.id} 
-                      variant="interactive" 
-                      className="animate-fade-in hover:shadow-lg transition-all duration-200"
-                      style={{ animationDelay: `${index * 50}ms` }}
-                    >
-                      <CardContent className="p-6">
-                        <div className="flex flex-col lg:flex-row justify-between items-start gap-4">
-                          {/* Job Info */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between mb-3 gap-4">
-                              <h2 className="text-xl font-semibold text-gray-900 hover:text-primary-600 transition-colors">
-                                <Link 
-                                  to={`/jobs/${job.id}`}
-                                  className="block"
-                                >
-                                  {job.title}
-                                </Link>
-                              </h2>
-                              <div className="flex items-center gap-1 text-sm text-gray-500 whitespace-nowrap">
-                                <Icon name="calendar" size="16" />
-                                <span className="hidden sm:inline">{formatDate(job.createdAt)}</span>
-                              </div>
-                            </div>
-                            
-                            <div className="flex flex-wrap items-center gap-4 mb-3 text-gray-600">
-                              <div className="flex items-center gap-1">
-                                <Icon name="building" size="16" />
-                                <span className="font-medium">{job.company?.name || '—'}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Icon name="location" size="16" />
-                                <span>{job.location || '—'}</span>
-                              </div>
-                            </div>
-                            
-                            <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
-                              {truncateText(job.description, 200)}
-                            </p>
-                            
-                            {/* Job Tags */}
-                            <div className="flex flex-wrap gap-2">
-                              <Badge variant="default">Full-time</Badge>
-                              <Badge variant="success">Remote</Badge>
-                              <Badge variant="primary">Senior Level</Badge>
-                            </div>
-                          </div>
-
-                          {/* Action Buttons */}
-                          <div className="flex flex-col gap-2 lg:items-end w-full lg:w-auto">
-                            <Button asChild className="w-full lg:w-auto">
-                              <Link to={`/jobs/${job.id}`}>
-                                <Icon name="arrow-right" size="16" className="mr-2" />
-                                View Details
-                              </Link>
-                            </Button>
-                            <Button variant="secondary" className="gap-2 w-full lg:w-auto group">
-                              <Icon name="heart" size="16" className="group-hover:scale-110 transition-transform" />
-                              Save Job
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <JobCard
+                      key={job.id}
+                      job={job}
+                      index={index}
+                      onSaveJob={handleSaveJob}
+                      isSaved={savedJobs.has(job.id)}
+                    />
                   ))
                 )}
               </div>

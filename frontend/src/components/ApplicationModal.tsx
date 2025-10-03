@@ -29,7 +29,6 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   applicantName = '',
   applicantEmail = ''
 }) => {
-  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
