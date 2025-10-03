@@ -249,34 +249,28 @@ const JobDetail: React.FC = () => {
             <div className="flex-1">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">{job.title}</h1>
               
-              <div className="flex flex-wrap items-center gap-6 mb-6 text-gray-600">
+              <div className="flex flex-wrap items-center gap-5 mb-6 text-gray-600">
                 <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Building className="w-5 h-5 text-blue-600" />
-                  </div>
+                  <Building className="w-4 h-4 text-gray-500" />
                   <div>
-                    <p className="font-semibold text-gray-900">{job.company?.name || '—'}</p>
-                    <p className="text-sm text-gray-500">Company</p>
+                    <p className="font-medium text-gray-900 text-sm">{job.company?.name || '—'}</p>
+                    <p className="text-xs text-gray-500">Company</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-green-600" />
-                  </div>
+                  <MapPin className="w-4 h-4 text-gray-500" />
                   <div>
-                    <p className="font-semibold text-gray-900">{job.location || '—'}</p>
-                    <p className="text-sm text-gray-500">Location</p>
+                    <p className="font-medium text-gray-900 text-sm">{job.location || '—'}</p>
+                    <p className="text-xs text-gray-500">Location</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-purple-600" />
-                  </div>
+                  <Clock className="w-4 h-4 text-gray-500" />
                   <div>
-                    <p className="font-semibold text-gray-900">Full-time</p>
-                    <p className="text-sm text-gray-500">Type</p>
+                    <p className="font-medium text-gray-900 text-sm">Full-time</p>
+                    <p className="text-xs text-gray-500">Type</p>
                   </div>
                 </div>
               </div>
@@ -292,33 +286,33 @@ const JobDetail: React.FC = () => {
             {/* Action Buttons */}
             <div className="flex flex-col gap-3 min-w-0 lg:min-w-[200px]">
               {hasApplied ? (
-                <div className="flex items-center justify-center gap-2 bg-green-50 text-green-800 px-6 py-3 rounded-lg border border-green-200 shadow-sm">
-                  <CheckCircle className="w-5 h-5" />
-                  <span className="font-semibold">Applied ✓</span>
+                <div className="flex items-center justify-center gap-2 bg-green-50 text-green-800 px-5 py-2.5 rounded-lg border border-green-200">
+                  <CheckCircle className="w-4 h-4" />
+                  <span className="font-medium text-sm">Applied ✓</span>
                 </div>
               ) : (
-                <Button onClick={handleApply} size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
-                  <Plus className="w-5 h-5 mr-2" />
+                <Button onClick={handleApply} size="default">
+                  <Plus className="w-4 h-4 mr-2" />
                   Apply Now
                 </Button>
               )}
               
               <Button 
                 variant="secondary" 
-                size="lg" 
+                size="default" 
                 onClick={handleSaveJob}
                 className="group"
               >
-                <Heart className={`w-5 h-5 mr-2 transition-all ${isSaved ? 'fill-red-500 text-red-500' : 'group-hover:scale-110'}`} />
+                <Heart className={`w-4 h-4 mr-2 transition-all ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
                 {isSaved ? 'Saved' : 'Save Job'}
               </Button>
               
               <Button 
                 variant="secondary" 
-                size="lg"
+                size="default"
                 onClick={handleShare}
               >
-                <Share2 className="w-5 h-5 mr-2" />
+                <Share2 className="w-4 h-4 mr-2" />
                 Share
               </Button>
             </div>
@@ -328,9 +322,9 @@ const JobDetail: React.FC = () => {
 
       {/* Sticky Apply Button for Mobile */}
       {!hasApplied && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-40">
-          <Button onClick={handleApply} size="lg" className="w-full shadow-lg">
-            <Plus className="w-5 h-5 mr-2" />
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-40">
+          <Button onClick={handleApply} size="default" className="w-full">
+            <Plus className="w-4 h-4 mr-2" />
             Apply Now
           </Button>
         </div>
@@ -402,14 +396,14 @@ const JobDetail: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">
+                    <div className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <span className="text-gray-700 font-semibold text-sm">
                         {job.company?.name?.charAt(0) || 'C'}
                       </span>
                     </div>
                     <div>
-                      <h4 className="font-semibold">{job.company?.name || 'Company'}</h4>
-                      <p className="text-sm text-gray-600">Technology Company</p>
+                      <h4 className="font-semibold text-sm">{job.company?.name || 'Company'}</h4>
+                      <p className="text-xs text-gray-600">Technology Company</p>
                     </div>
                   </div>
                   <p className="text-sm text-gray-700 mb-4">

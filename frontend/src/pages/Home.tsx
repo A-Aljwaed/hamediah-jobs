@@ -12,25 +12,20 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen -mt-4 -mx-4">
       {/* Hero Section with Modern Gradient */}
-      <section className="hero-section relative py-28 px-4 text-white overflow-hidden">
+      <section className="hero-section relative py-20 px-4 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-95"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-96 h-96 bg-white opacity-[0.08] rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute top-32 right-20 w-[32rem] h-[32rem] bg-purple-300 opacity-[0.08] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-300 opacity-[0.08] rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-        </div>
         
         <div className="relative max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in text-shadow-glow">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
             {t('index.headline')}
           </h1>
-          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up opacity-95">
+          <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up opacity-90">
             {t('index.tagline')}
           </p>
 
-          <div className="max-w-4xl mx-auto mb-12 animate-scale-in">
-            <Card className="card-glass border-white/20 shadow-glass" padding="lg">
-              <form className="grid md:grid-cols-3 gap-4" action="/jobs" method="get">
+          <div className="max-w-4xl mx-auto mb-8 animate-scale-in">
+            <Card className="card-glass border-white/20" padding="lg">
+              <form className="grid md:grid-cols-3 gap-3" action="/jobs" method="get">
                 <Input
                   name="q"
                   placeholder="Job title, keywords, or company"
@@ -48,30 +43,30 @@ const Home: React.FC = () => {
                 <Button 
                   type="submit"
                   variant="secondary" 
-                  className="bg-white/90 hover:bg-white border-white/40 text-gray-900 font-semibold shadow-md hover:shadow-lg backdrop-blur-sm"
+                  className="bg-white/90 hover:bg-white border-white/40 text-gray-900 font-semibold"
                 >
-                  <Icon name="search" size="20" className="mr-2" aria-hidden="true" />
+                  <Icon name="search" size="16" className="mr-2" aria-hidden="true" />
                   Search Jobs
                 </Button>
               </form>
             </Card>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-bounce-in">
-            <Button asChild size="lg" className="text-lg px-10 py-5 shadow-xl hover:shadow-2xl">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center animate-bounce-in">
+            <Button asChild size="default" className="px-6 py-3">
               <Link to="/jobs">
-                <Icon name="search" size="20" className="mr-2" aria-hidden="true" />
+                <Icon name="search" size="16" className="mr-2" aria-hidden="true" />
                 {t('index.cta.explore')}
               </Link>
             </Button>
             <Button 
               asChild 
               variant="secondary" 
-              size="lg" 
-              className="text-lg px-10 py-5 bg-white/90 backdrop-blur-md border-white/40 text-gray-900 font-semibold hover:bg-white shadow-lg hover:shadow-xl"
+              size="default" 
+              className="px-6 py-3 bg-white/90 backdrop-blur-md border-white/40 text-gray-900 font-semibold hover:bg-white"
             >
               <Link to="/login">
-                <Icon name="user" size="20" className="mr-2" aria-hidden="true" />
+                <Icon name="user" size="16" className="mr-2" aria-hidden="true" />
                 {t('nav.login')}
               </Link>
             </Button>
@@ -80,266 +75,254 @@ const Home: React.FC = () => {
       </section>
 
       {/* Popular Categories Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 animate-fade-in">
               Popular Job Categories
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               Explore opportunities in the most in-demand fields
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Link 
               to="/jobs?category=technology" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Technology jobs, 1234 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)'}}>
-                <Icon name="desktop" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="desktop" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Technology</h3>
-              <p className="text-sm text-gray-600 font-medium">1,234 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Technology</h3>
+              <p className="text-sm text-gray-500">1,234 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=finance" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Finance jobs, 892 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
-                <Icon name="building" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="building" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Finance</h3>
-              <p className="text-sm text-gray-600 font-medium">892 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Finance</h3>
+              <p className="text-sm text-gray-500">892 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=healthcare" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Healthcare jobs, 756 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #14b8a6 0%, #10b981 100%)'}}>
-                <Icon name="heart" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="heart" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Healthcare</h3>
-              <p className="text-sm text-gray-600 font-medium">756 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Healthcare</h3>
+              <p className="text-sm text-gray-500">756 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=education" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Education jobs, 543 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
-                <Icon name="book" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="book" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Education</h3>
-              <p className="text-sm text-gray-600 font-medium">543 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Education</h3>
+              <p className="text-sm text-gray-500">543 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=marketing" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Marketing jobs, 432 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #f97316 0%, #ef4444 100%)'}}>
-                <Icon name="chart-bar" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="chart-bar" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Marketing</h3>
-              <p className="text-sm text-gray-600 font-medium">432 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Marketing</h3>
+              <p className="text-sm text-gray-500">432 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=engineering" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Engineering jobs, 678 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)'}}>
-                <Icon name="bolt" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="bolt" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Engineering</h3>
-              <p className="text-sm text-gray-600 font-medium">678 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Engineering</h3>
+              <p className="text-sm text-gray-500">678 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=design" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Design jobs, 321 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #a855f7 0%, #d946ef 100%)'}}>
-                <Icon name="palette" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="palette" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Design</h3>
-              <p className="text-sm text-gray-600 font-medium">321 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Design</h3>
+              <p className="text-sm text-gray-500">321 jobs</p>
             </Link>
             
             <Link 
               to="/jobs?category=sales" 
-              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              className="card p-5 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg"
               aria-label="View Sales jobs, 567 positions available"
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)'}}>
-                <Icon name="users" size="24" className="text-white" aria-hidden="true" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-3 bg-gray-100 text-gray-600 transition-all duration-200">
+                <Icon name="users" size="16" aria-hidden="true" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 text-lg">Sales</h3>
-              <p className="text-sm text-gray-600 font-medium">567 jobs</p>
+              <h3 className="font-semibold text-gray-900 mb-1 text-base">Sales</h3>
+              <p className="text-sm text-gray-500">567 jobs</p>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 animate-fade-in">
               Why Choose Hamediah Jobs?
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               Your gateway to exciting career opportunities with bilingual support
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="card card-hover card-premium p-8 text-center float-animation group">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow" style={{background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'}}>
-                <Icon name="globe-feature" size="24" className="text-white" aria-hidden="true" />
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="card p-6 text-center group">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center mx-auto mb-4 bg-gray-100 text-gray-600">
+                <Icon name="globe-feature" size="20" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Bilingual Support</h3>
-              <p className="text-gray-600 text-base leading-relaxed">Search and apply for jobs in both English and Arabic with full RTL support</p>
-              <div className="mt-6 inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors cursor-pointer">
-                Learn more 
-                <Icon name="arrow-right" size="16" className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </div>
+              <h3 className="text-lg font-semibold mb-3 text-gray-900">Bilingual Support</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Search and apply for jobs in both English and Arabic with full RTL support</p>
             </div>
             
-            <div className="card card-hover p-8 text-center float-animation group" style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)', animationDelay: '0.2s' }}>
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow-purple" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
-                <Icon name="bolt" size="24" className="text-white" aria-hidden="true" />
+            <div className="card p-6 text-center group">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center mx-auto mb-4 bg-gray-100 text-gray-600">
+                <Icon name="bolt" size="20" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Fast & Easy</h3>
-              <p className="text-gray-600 text-base leading-relaxed">Quick job search with powerful filtering and instant results</p>
-              <div className="mt-6 inline-flex items-center text-secondary-600 font-semibold hover:text-secondary-700 transition-colors cursor-pointer">
-                Learn more 
-                <Icon name="arrow-right" size="16" className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </div>
+              <h3 className="text-lg font-semibold mb-3 text-gray-900">Fast & Easy</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Quick job search with powerful filtering and instant results</p>
             </div>
             
-            <div className="card card-hover card-premium p-8 text-center float-animation group" style={{ animationDelay: '0.4s' }}>
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
-                <Icon name="heart" size="24" className="text-white" aria-hidden="true" />
+            <div className="card p-6 text-center group">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center mx-auto mb-4 bg-gray-100 text-gray-600">
+                <Icon name="heart" size="20" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Quality Jobs</h3>
-              <p className="text-gray-600 text-base leading-relaxed">Curated job listings from trusted employers and companies</p>
-              <div className="mt-6 inline-flex items-center text-accent-600 font-semibold hover:text-accent-700 transition-colors cursor-pointer">
-                Learn more 
-                <Icon name="arrow-right" size="16" className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </div>
+              <h3 className="text-lg font-semibold mb-3 text-gray-900">Quality Jobs</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Curated job listings from trusted employers and companies</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-primary-50/20">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="animate-scale-in">
-              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">1000+</div>
-              <div className="text-gray-600 font-semibold text-base">Active Jobs</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-900">1000+</div>
+              <div className="text-gray-600 text-sm">Active Jobs</div>
             </div>
-            <div className="animate-scale-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-secondary-500 to-secondary-600 bg-clip-text text-transparent">500+</div>
-              <div className="text-gray-600 font-semibold text-base">Companies</div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-900">500+</div>
+              <div className="text-gray-600 text-sm">Companies</div>
             </div>
-            <div className="animate-scale-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-transparent">10k+</div>
-              <div className="text-gray-600 font-semibold text-base">Job Seekers</div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-900">10k+</div>
+              <div className="text-gray-600 text-sm">Job Seekers</div>
             </div>
-            <div className="animate-scale-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">95%</div>
-              <div className="text-gray-600 font-semibold text-base">Success Rate</div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-900">95%</div>
+              <div className="text-gray-600 text-sm">Success Rate</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Success Stories Section */}
-      <section className="py-24 px-4 bg-white">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 animate-fade-in">
               Success Stories
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               See how our platform helped professionals find their dream jobs
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="card card-hover p-8 group">
-              <div className="flex items-center mb-5">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'}}>
-                  <span className="text-white font-bold text-xl">SA</span>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="card p-6 group">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center mr-3 bg-gray-200 text-gray-700">
+                  <span className="font-semibold text-sm">SA</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 text-lg">Sarah Ahmed</h4>
-                  <p className="text-sm text-gray-500 font-medium">Software Engineer</p>
+                  <h4 className="font-semibold text-gray-900 text-base">Sarah Ahmed</h4>
+                  <p className="text-xs text-gray-500">Software Engineer</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-5 leading-relaxed">
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 "I found my dream job in tech within just 2 weeks. The bilingual support made everything so much easier!"
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
               </div>
             </div>
             
-            <div className="card card-hover p-8 group">
-              <div className="flex items-center mb-5">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
-                  <span className="text-white font-bold text-xl">MH</span>
+            <div className="card p-6 group">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center mr-3 bg-gray-200 text-gray-700">
+                  <span className="font-semibold text-sm">MH</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 text-lg">Mohammed Hassan</h4>
-                  <p className="text-sm text-gray-500 font-medium">Marketing Manager</p>
+                  <h4 className="font-semibold text-gray-900 text-base">Mohammed Hassan</h4>
+                  <p className="text-xs text-gray-500">Marketing Manager</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-5 leading-relaxed">
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 "The platform connected me with amazing opportunities. The search filters are incredibly precise!"
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
               </div>
             </div>
             
-            <div className="card card-hover p-8 group">
-              <div className="flex items-center mb-5">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
-                  <span className="text-white font-bold text-xl">LK</span>
+            <div className="card p-6 group">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center mr-3 bg-gray-200 text-gray-700">
+                  <span className="font-semibold text-sm">LK</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 text-lg">Layla Khalil</h4>
-                  <p className="text-sm text-gray-500 font-medium">UX Designer</p>
+                  <h4 className="font-semibold text-gray-900 text-base">Layla Khalil</h4>
+                  <p className="text-xs text-gray-500">UX Designer</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-5 leading-relaxed">
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 "Professional, fast, and user-friendly. I got multiple interview invitations in my first week!"
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
@@ -350,22 +333,18 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 px-4 text-white overflow-hidden" style={{background: 'var(--gradient-primary)'}}>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        </div>
+      <section className="relative py-16 px-4 text-white overflow-hidden" style={{background: 'var(--gradient-primary)'}}>
         <div className="relative max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 animate-fade-in">
             Ready to Find Your Dream Job?
           </h2>
-          <p className="text-xl md:text-2xl mb-10 opacity-95 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">
             Join thousands of job seekers who found their perfect match through Hamediah Jobs
           </p>
-          <Button asChild size="lg" className="text-lg px-10 py-5 bg-white text-gray-900 hover:bg-white hover:shadow-2xl font-bold shadow-xl">
+          <Button asChild size="default" className="px-6 py-3 bg-white text-gray-900 hover:bg-white font-semibold">
             <Link to="/jobs" className="flex items-center gap-2">
               Start Your Search Now
-              <Icon name="arrow-right" size="20" aria-hidden="true" />
+              <Icon name="arrow-right" size="16" aria-hidden="true" />
             </Link>
           </Button>
         </div>
