@@ -293,4 +293,14 @@
   .btn-primary, .btn-secondary {
     @apply px-4 py-2 text-sm;
   }
+  
+  /* Hide icons on mobile for cleaner look */
+  .mobile-hide-icon {
+    @apply hidden;
+  }
+  
+  /* Make cards more compact on mobile */
+  .card {
+    @apply p-4;
+  }
 }
