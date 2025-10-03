@@ -30,25 +30,30 @@ const Home: React.FC = () => {
 
           <div className="max-w-4xl mx-auto mb-12 animate-scale-in">
             <Card className="card-glass border-white/20 shadow-glass" padding="lg">
-              <div className="grid md:grid-cols-3 gap-4">
+              <form className="grid md:grid-cols-3 gap-4" action="/jobs" method="get">
                 <Input
+                  name="q"
                   placeholder="Job title, keywords, or company"
                   className="bg-white/95 backdrop-blur-sm border-white/40 focus:ring-white/60 focus:bg-white"
                   leftIcon="search"
+                  aria-label="Job title or keywords"
                 />
                 <Input
+                  name="location"
                   placeholder="Location"
                   className="bg-white/95 backdrop-blur-sm border-white/40 focus:ring-white/60 focus:bg-white"
                   leftIcon="location"
+                  aria-label="Job location"
                 />
                 <Button 
+                  type="submit"
                   variant="secondary" 
                   className="bg-white/90 hover:bg-white border-white/40 text-gray-900 font-semibold shadow-md hover:shadow-lg backdrop-blur-sm"
                 >
                   <Icon name="search" size="20" className="mr-2" aria-hidden="true" />
                   Search Jobs
                 </Button>
-              </div>
+              </form>
             </Card>
           </div>
           
@@ -87,69 +92,101 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=technology" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Technology jobs, 1234 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)'}}>
                 <Icon name="desktop" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Technology</h3>
               <p className="text-sm text-gray-600 font-medium">1,234 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=finance" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Finance jobs, 892 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
                 <Icon name="building" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Finance</h3>
               <p className="text-sm text-gray-600 font-medium">892 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=healthcare" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Healthcare jobs, 756 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #14b8a6 0%, #10b981 100%)'}}>
                 <Icon name="heart" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Healthcare</h3>
               <p className="text-sm text-gray-600 font-medium">756 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=education" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Education jobs, 543 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
                 <Icon name="book" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Education</h3>
               <p className="text-sm text-gray-600 font-medium">543 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=marketing" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Marketing jobs, 432 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #f97316 0%, #ef4444 100%)'}}>
                 <Icon name="chart-bar" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Marketing</h3>
               <p className="text-sm text-gray-600 font-medium">432 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=engineering" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Engineering jobs, 678 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)'}}>
                 <Icon name="bolt" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Engineering</h3>
               <p className="text-sm text-gray-600 font-medium">678 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=design" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Design jobs, 321 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #a855f7 0%, #d946ef 100%)'}}>
                 <Icon name="palette" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Design</h3>
               <p className="text-sm text-gray-600 font-medium">321 jobs</p>
-            </div>
+            </Link>
             
-            <div className="card card-hover p-6 text-center group cursor-pointer">
+            <Link 
+              to="/jobs?category=sales" 
+              className="card card-hover p-6 text-center group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-2xl"
+              aria-label="View Sales jobs, 567 positions available"
+            >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)'}}>
                 <Icon name="users" size="24" className="text-white" aria-hidden="true" />
               </div>
               <h3 className="font-bold text-gray-900 mb-2 text-lg">Sales</h3>
               <p className="text-sm text-gray-600 font-medium">567 jobs</p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

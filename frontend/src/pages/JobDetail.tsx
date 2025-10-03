@@ -8,7 +8,8 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Skeleton } from '../components/ui/Skeleton';
-import JobApplication from '../components/JobApplication';
+import ApplicationModal, { ApplicationData } from '../components/ApplicationModal';
+import toast from 'react-hot-toast';
 import { 
   ArrowLeft, 
   Building, 
@@ -31,17 +32,12 @@ const JobDetail: React.FC = () => {
   const location = useLocation();
   const { isAuthenticated, user } = useAuth();
   const [job, setJob] = useState<Job | null>(null);
+  const [similarJobs, setSimilarJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showApplyForm, setShowApplyForm] = useState(false);
+  const [showApplyModal, setShowApplyModal] = useState(false);
   const [hasApplied, setHasApplied] = useState(false);
-  const [applicationData, setApplicationData] = useState({
-    applicantName: user?.username || '',
-    applicantEmail: user?.email || '',
-    coverLetter: '',
-    resumeUrl: ''
-  });
-  const [submitLoading, setSubmitLoading] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     const loadJob = async () => {
@@ -57,6 +53,13 @@ const JobDetail: React.FC = () => {
           const applied = await applicationService.checkIfApplied(parseInt(id), user.email);
           setHasApplied(applied);
         }
+
+        // Load similar jobs (for demo, just load some recent jobs)
+        const allJobs = await jobService.getJobs();
+        const similar = allJobs
+          .filter(j => j.id !== parseInt(id))
+          .slice(0, 3);
+        setSimilarJobs(similar);
         
         setError(null);
       } catch (err) {
@@ -75,27 +78,51 @@ const JobDetail: React.FC = () => {
       navigate('/login', { state: { from: location } });
       return;
     }
-    setShowApplyForm(true);
+    setShowApplyModal(true);
   };
 
-  const handleSubmitApplication = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!job || !user) return;
+  const handleSubmitApplication = async (data: ApplicationData) => {
+    if (!job) return;
 
-    setSubmitLoading(true);
     try {
       await applicationService.submitApplication({
         jobId: job.id,
-        ...applicationData
+        applicantName: data.applicantName,
+        applicantEmail: data.applicantEmail,
+        coverLetter: data.coverLetter,
+        resumeUrl: data.resumeUrl || 'uploaded-file.pdf'
       });
       setHasApplied(true);
-      setShowApplyForm(false);
-      alert('Application submitted successfully!');
+      setShowApplyModal(false);
+      toast.success('Application submitted successfully!');
     } catch (err) {
-      alert('Failed to submit application. Please try again.');
+      toast.error('Failed to submit application. Please try again.');
       console.error('Error submitting application:', err);
-    } finally {
-      setSubmitLoading(false);
+      throw err;
+    }
+  };
+
+  const handleSaveJob = () => {
+    setIsSaved(!isSaved);
+    toast.success(isSaved ? 'Job removed from saved' : 'Job saved successfully!');
+  };
+
+  const handleShare = async () => {
+    if (navigator.share && job) {
+      try {
+        await navigator.share({
+          title: job.title,
+          text: `Check out this job: ${job.title}`,
+          url: window.location.href
+        });
+      } catch (err) {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href);
+        toast.success('Link copied to clipboard!');
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied to clipboard!');
     }
   };
 
@@ -197,16 +224,14 @@ const JobDetail: React.FC = () => {
   return (
     <div className="-mx-4 -mt-4">
       {/* Application Modal */}
-      {showApplyForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <JobApplication
-            jobId={job.id.toString()}
-            jobTitle={job.title}
-            companyName={job.company?.name || 'Company'}
-            onClose={() => setShowApplyForm(false)}
-          />
-        </div>
-      )}
+      <ApplicationModal
+        isOpen={showApplyModal}
+        onClose={() => setShowApplyModal(false)}
+        onSubmit={handleSubmitApplication}
+        jobTitle={job.title}
+        applicantName={user?.username}
+        applicantEmail={user?.email}
+      />
 
       {/* Header Section */}
       <section className="bg-white border-b border-gray-100 py-6 px-4">
@@ -267,23 +292,32 @@ const JobDetail: React.FC = () => {
             {/* Action Buttons */}
             <div className="flex flex-col gap-3 min-w-0 lg:min-w-[200px]">
               {hasApplied ? (
-                <div className="flex items-center gap-2 bg-green-50 text-green-800 px-6 py-3 rounded-lg border border-green-200">
+                <div className="flex items-center justify-center gap-2 bg-green-50 text-green-800 px-6 py-3 rounded-lg border border-green-200 shadow-sm">
                   <CheckCircle className="w-5 h-5" />
-                  Applied ✓
+                  <span className="font-semibold">Applied ✓</span>
                 </div>
               ) : (
-                <Button onClick={handleApply} size="lg">
+                <Button onClick={handleApply} size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
                   <Plus className="w-5 h-5 mr-2" />
                   Apply Now
                 </Button>
               )}
               
-              <Button variant="secondary" size="lg">
-                <Heart className="w-5 h-5 mr-2" />
-                Save Job
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                onClick={handleSaveJob}
+                className="group"
+              >
+                <Heart className={`w-5 h-5 mr-2 transition-all ${isSaved ? 'fill-red-500 text-red-500' : 'group-hover:scale-110'}`} />
+                {isSaved ? 'Saved' : 'Save Job'}
               </Button>
               
-              <Button variant="secondary" size="lg">
+              <Button 
+                variant="secondary" 
+                size="lg"
+                onClick={handleShare}
+              >
                 <Share2 className="w-5 h-5 mr-2" />
                 Share
               </Button>
@@ -291,6 +325,16 @@ const JobDetail: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Sticky Apply Button for Mobile */}
+      {!hasApplied && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-40">
+          <Button onClick={handleApply} size="lg" className="w-full shadow-lg">
+            <Plus className="w-5 h-5 mr-2" />
+            Apply Now
+          </Button>
+        </div>
+      )}
 
       {/* Job Description */}
       <section className="py-12 px-4">
@@ -381,7 +425,64 @@ const JobDetail: React.FC = () => {
         </div>
       </section>
 
+      {/* Similar Jobs Section */}
+      {similarJobs.length > 0 && (
+        <section className="py-12 px-4 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                Similar Job Opportunities
+              </h2>
+              <p className="text-gray-600">
+                You might also be interested in these positions
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {similarJobs.map((similarJob) => (
+                <Card 
+                  key={similarJob.id} 
+                  variant="interactive" 
+                  className="hover:shadow-lg transition-all duration-200"
+                >
+                  <CardContent className="p-6">
+                    <div className="mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-primary-600 transition-colors">
+                        <Link to={`/jobs/${similarJob.id}`}>
+                          {similarJob.title}
+                        </Link>
+                      </h3>
+                      <p className="text-sm text-gray-600 flex items-center gap-1">
+                        <Building className="w-4 h-4" />
+                        {similarJob.company?.name || '—'}
+                      </p>
+                      <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">
+                        <MapPin className="w-4 h-4" />
+                        {similarJob.location || '—'}
+                      </p>
+                    </div>
 
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      {similarJob.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <Badge variant="default" className="text-xs">Full-time</Badge>
+                      <Badge variant="success" className="text-xs">Remote</Badge>
+                    </div>
+
+                    <Button asChild variant="secondary" className="w-full">
+                      <Link to={`/jobs/${similarJob.id}`}>
+                        View Details
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
