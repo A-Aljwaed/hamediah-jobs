@@ -3,20 +3,20 @@ import { clsx } from 'clsx';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const cardVariants = cva(
-  'rounded-2xl border bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300',
+  'rounded-lg border bg-white shadow-sm transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'border-gray-200/50 hover:shadow-lg hover:border-gray-200',
-        elevated: 'border-gray-200/50 shadow-md hover:shadow-xl',
-        premium: 'border-primary-200/50 hover:shadow-xl',
-        interactive: 'border-gray-200/50 hover:shadow-xl hover:-translate-y-1 cursor-pointer',
+        default: 'border-gray-200 hover:shadow-md',
+        elevated: 'border-gray-200 shadow-md hover:shadow-lg',
+        premium: 'border-gray-200 hover:shadow-lg',
+        interactive: 'border-gray-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer',
       },
       padding: {
         none: '',
-        sm: 'p-4',
-        default: 'p-6',
-        lg: 'p-8',
+        sm: 'p-3',
+        default: 'p-5',
+        lg: 'p-6',
       },
     },
     defaultVariants: {
