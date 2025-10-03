@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent } from '../components/ui/Card';
-import { Badge } from '../components/ui/Badge';
+import { Card } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
 import { Icon } from '../components/ui/Icon';
 
@@ -12,39 +11,39 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen -mt-4 -mx-4">
-      {/* Hero Section */}
-      <section className="hero-section relative py-24 px-4 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-90"></div>
+      {/* Hero Section with Modern Gradient */}
+      <section className="hero-section relative py-28 px-4 text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-95"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-white opacity-10 rounded-full blur-3xl"></div>
-          <div className="absolute top-32 right-20 w-96 h-96 bg-red-300 opacity-10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-green-300 opacity-10 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-10 w-96 h-96 bg-white opacity-[0.08] rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute top-32 right-20 w-[32rem] h-[32rem] bg-purple-300 opacity-[0.08] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-300 opacity-[0.08] rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
         </div>
         
         <div className="relative max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in text-shadow-glow">
             {t('index.headline')}
           </h1>
-          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up opacity-90">
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up opacity-95">
             {t('index.tagline')}
           </p>
 
-          <div className="max-w-4xl mx-auto mb-12 animate-bounce-in">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20" padding="lg">
+          <div className="max-w-4xl mx-auto mb-12 animate-scale-in">
+            <Card className="card-glass border-white/20 shadow-glass" padding="lg">
               <div className="grid md:grid-cols-3 gap-4">
                 <Input
                   placeholder="Job title, keywords, or company"
-                  className="bg-white/90 border-white/30 focus:ring-white/50"
+                  className="bg-white/95 backdrop-blur-sm border-white/40 focus:ring-white/60 focus:bg-white"
                   leftIcon="search"
                 />
                 <Input
                   placeholder="Location"
-                  className="bg-white/90 border-white/30 focus:ring-white/50"
+                  className="bg-white/95 backdrop-blur-sm border-white/40 focus:ring-white/60 focus:bg-white"
                   leftIcon="location"
                 />
                 <Button 
                   variant="secondary" 
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-white/30 text-white"
+                  className="bg-white/90 hover:bg-white border-white/40 text-gray-900 font-semibold shadow-md hover:shadow-lg backdrop-blur-sm"
                 >
                   <Icon name="search" size="20" className="mr-2" aria-hidden="true" />
                   Search Jobs
@@ -54,7 +53,7 @@ const Home: React.FC = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-bounce-in">
-            <Button asChild size="lg" className="text-lg px-8 py-4">
+            <Button asChild size="lg" className="text-lg px-10 py-5 shadow-xl hover:shadow-2xl">
               <Link to="/jobs">
                 <Icon name="search" size="20" className="mr-2" aria-hidden="true" />
                 {t('index.cta.explore')}
@@ -64,7 +63,7 @@ const Home: React.FC = () => {
               asChild 
               variant="secondary" 
               size="lg" 
-              className="text-lg px-8 py-4 bg-white/20 border-white/30 text-white hover:bg-white/30"
+              className="text-lg px-10 py-5 bg-white/90 backdrop-blur-md border-white/40 text-gray-900 font-semibold hover:bg-white shadow-lg hover:shadow-xl"
             >
               <Link to="/login">
                 <Icon name="user" size="20" className="mr-2" aria-hidden="true" />
@@ -76,10 +75,10 @@ const Home: React.FC = () => {
       </section>
 
       {/* Popular Categories Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-green-50">
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
               Popular Job Categories
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -88,78 +87,78 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-4" style={{background: 'var(--gradient-primary)'}}>
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)'}}>
                 <Icon name="desktop" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Technology</h3>
-              <p className="text-sm text-gray-600">1,234 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Technology</h3>
+              <p className="text-sm text-gray-600 font-medium">1,234 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
                 <Icon name="building" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Finance</h3>
-              <p className="text-sm text-gray-600">892 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Finance</h3>
+              <p className="text-sm text-gray-600 font-medium">892 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #14b8a6 0%, #10b981 100%)'}}>
                 <Icon name="heart" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Healthcare</h3>
-              <p className="text-sm text-gray-600">756 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Healthcare</h3>
+              <p className="text-sm text-gray-600 font-medium">756 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
                 <Icon name="book" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Education</h3>
-              <p className="text-sm text-gray-600">543 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Education</h3>
+              <p className="text-sm text-gray-600 font-medium">543 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #f97316 0%, #ef4444 100%)'}}>
                 <Icon name="chart-bar" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Marketing</h3>
-              <p className="text-sm text-gray-600">432 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Marketing</h3>
+              <p className="text-sm text-gray-600 font-medium">432 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)'}}>
                 <Icon name="bolt" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Engineering</h3>
-              <p className="text-sm text-gray-600">678 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Engineering</h3>
+              <p className="text-sm text-gray-600 font-medium">678 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #a855f7 0%, #d946ef 100%)'}}>
                 <Icon name="palette" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Design</h3>
-              <p className="text-sm text-gray-600">321 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Design</h3>
+              <p className="text-sm text-gray-600 font-medium">321 jobs</p>
             </div>
             
-            <div className="card card-hover p-6 text-center bg-white">
-              <div className="w-8 h-8 bg-rose-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="card card-hover p-6 text-center group cursor-pointer">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)'}}>
                 <Icon name="users" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Sales</h3>
-              <p className="text-sm text-gray-600">567 jobs</p>
+              <h3 className="font-bold text-gray-900 mb-2 text-lg">Sales</h3>
+              <p className="text-sm text-gray-600 font-medium">567 jobs</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
               Why Choose Hamediah Jobs?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -168,39 +167,39 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="card card-hover card-premium p-8 text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <div className="card card-hover card-premium p-8 text-center float-animation group">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow" style={{background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'}}>
                 <Icon name="globe-feature" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">Bilingual Support</h3>
-              <p className="text-gray-600">Search and apply for jobs in both English and Arabic with full RTL support</p>
-              <div className="mt-4 inline-flex items-center text-green-600 font-medium">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Bilingual Support</h3>
+              <p className="text-gray-600 text-base leading-relaxed">Search and apply for jobs in both English and Arabic with full RTL support</p>
+              <div className="mt-6 inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors cursor-pointer">
                 Learn more 
-                <Icon name="arrow-right" size="16" className="ml-1" aria-hidden="true" />
+                <Icon name="arrow-right" size="16" className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </div>
             </div>
             
-            <div className="card card-hover p-8 text-center border-2 border-red-200 bg-gradient-to-br from-red-50 to-rose-50">
-              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <div className="card card-hover p-8 text-center float-animation group" style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)', animationDelay: '0.2s' }}>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow-purple" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
                 <Icon name="bolt" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">Fast & Easy</h3>
-              <p className="text-gray-600">Quick job search with powerful filtering and instant results</p>
-              <div className="mt-4 inline-flex items-center text-red-600 font-medium">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Fast & Easy</h3>
+              <p className="text-gray-600 text-base leading-relaxed">Quick job search with powerful filtering and instant results</p>
+              <div className="mt-6 inline-flex items-center text-secondary-600 font-semibold hover:text-secondary-700 transition-colors cursor-pointer">
                 Learn more 
-                <Icon name="arrow-right" size="16" className="ml-1" aria-hidden="true" />
+                <Icon name="arrow-right" size="16" className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </div>
             </div>
             
-            <div className="card card-hover card-premium p-8 text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <div className="card card-hover card-premium p-8 text-center float-animation group" style={{ animationDelay: '0.4s' }}>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
                 <Icon name="heart" size="24" className="text-white" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-900">Quality Jobs</h3>
-              <p className="text-gray-600">Curated job listings from trusted employers and companies</p>
-              <div className="mt-4 inline-flex items-center text-green-600 font-medium">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Quality Jobs</h3>
+              <p className="text-gray-600 text-base leading-relaxed">Curated job listings from trusted employers and companies</p>
+              <div className="mt-6 inline-flex items-center text-accent-600 font-semibold hover:text-accent-700 transition-colors cursor-pointer">
                 Learn more 
-                <Icon name="arrow-right" size="16" className="ml-1" aria-hidden="true" />
+                <Icon name="arrow-right" size="16" className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </div>
             </div>
           </div>
@@ -208,34 +207,34 @@ const Home: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-primary-50/20">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold mb-2" style={{color: 'var(--primary-green)'}}>1000+</div>
-              <div className="text-gray-600">Active Jobs</div>
+            <div className="animate-scale-in">
+              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">1000+</div>
+              <div className="text-gray-600 font-semibold text-base">Active Jobs</div>
             </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold mb-2" style={{color: 'var(--secondary-red)'}}>500+</div>
-              <div className="text-gray-600">Companies</div>
+            <div className="animate-scale-in" style={{ animationDelay: '0.1s' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-secondary-500 to-secondary-600 bg-clip-text text-transparent">500+</div>
+              <div className="text-gray-600 font-semibold text-base">Companies</div>
             </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold mb-2" style={{color: 'var(--accent-emerald)'}}>10k+</div>
-              <div className="text-gray-600">Job Seekers</div>
+            <div className="animate-scale-in" style={{ animationDelay: '0.2s' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-transparent">10k+</div>
+              <div className="text-gray-600 font-semibold text-base">Job Seekers</div>
             </div>
-            <div className="animate-fade-in">
-              <div className="text-3xl md:text-4xl font-bold mb-2" style={{color: 'var(--secondary-red-dark)'}}>95%</div>
-              <div className="text-gray-600">Success Rate</div>
+            <div className="animate-scale-in" style={{ animationDelay: '0.3s' }}>
+              <div className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">95%</div>
+              <div className="text-gray-600 font-semibold text-base">Success Rate</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Success Stories Section */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
               Success Stories
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -244,66 +243,66 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="card card-hover p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-green-600 font-bold text-lg">SA</span>
+            <div className="card card-hover p-8 group">
+              <div className="flex items-center mb-5">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'}}>
+                  <span className="text-white font-bold text-xl">SA</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Sarah Ahmed</h4>
-                  <p className="text-sm text-gray-500">Software Engineer</p>
+                  <h4 className="font-bold text-gray-900 text-lg">Sarah Ahmed</h4>
+                  <p className="text-sm text-gray-500 font-medium">Software Engineer</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-5 leading-relaxed">
                 "I found my dream job in tech within just 2 weeks. The bilingual support made everything so much easier!"
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
               </div>
             </div>
             
-            <div className="card card-hover p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-red-600 font-bold text-lg">MH</span>
+            <div className="card card-hover p-8 group">
+              <div className="flex items-center mb-5">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'}}>
+                  <span className="text-white font-bold text-xl">MH</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Mohammed Hassan</h4>
-                  <p className="text-sm text-gray-500">Marketing Manager</p>
+                  <h4 className="font-bold text-gray-900 text-lg">Mohammed Hassan</h4>
+                  <p className="text-sm text-gray-500 font-medium">Marketing Manager</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-5 leading-relaxed">
                 "The platform connected me with amazing opportunities. The search filters are incredibly precise!"
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
               </div>
             </div>
             
-            <div className="card card-hover p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-emerald-600 font-bold text-lg">LK</span>
+            <div className="card card-hover p-8 group">
+              <div className="flex items-center mb-5">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 group-hover:scale-110" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'}}>
+                  <span className="text-white font-bold text-xl">LK</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Layla Khalil</h4>
-                  <p className="text-sm text-gray-500">UX Designer</p>
+                  <h4 className="font-bold text-gray-900 text-lg">Layla Khalil</h4>
+                  <p className="text-sm text-gray-500 font-medium">UX Designer</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-5 leading-relaxed">
                 "Professional, fast, and user-friendly. I got multiple interview invitations in my first week!"
               </p>
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
@@ -314,18 +313,24 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 text-white" style={{background: 'var(--gradient-primary)'}}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      <section className="relative py-24 px-4 text-white overflow-hidden" style={{background: 'var(--gradient-primary)'}}>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">
             Ready to Find Your Dream Job?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
+          <p className="text-xl md:text-2xl mb-10 opacity-95 max-w-2xl mx-auto leading-relaxed">
             Join thousands of job seekers who found their perfect match through Hamediah Jobs
-          </p>            <Button asChild size="lg" className="text-lg px-8 py-4" style={{color: 'var(--primary-green)'}} iconRight="arrow-right">
-              <Link to="/jobs">
-                Start Your Search Now
-              </Link>
-            </Button>
+          </p>
+          <Button asChild size="lg" className="text-lg px-10 py-5 bg-white text-gray-900 hover:bg-white hover:shadow-2xl font-bold shadow-xl">
+            <Link to="/jobs" className="flex items-center gap-2">
+              Start Your Search Now
+              <Icon name="arrow-right" size="20" aria-hidden="true" />
+            </Link>
+          </Button>
         </div>
       </section>
     </div>
