@@ -170,7 +170,7 @@ const JobList: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center">
         <Card className="text-center max-w-md" padding="lg">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Icon name="alert-triangle" size="24" className="text-red-600" />
+            <Icon name="alert-triangle" size="20" className="text-red-600" />
           </div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Oops! Something went wrong</h3>
           <p className="text-gray-600 mb-4">{error}</p>
@@ -267,7 +267,7 @@ const JobList: React.FC = () => {
                 {paginatedJobs.length === 0 ? (
                   <Card className="text-center py-16" padding="lg">
                     <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <Icon name="briefcase" size="24" className="text-gray-400" />
+                      <Icon name="briefcase" size="20" className="text-gray-400" />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">No jobs found</h3>
                     <p className="text-gray-600 mb-6">{t('jobs.empty')}</p>

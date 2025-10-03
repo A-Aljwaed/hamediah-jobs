@@ -224,7 +224,7 @@ const AdminDashboard: React.FC = () => {
                   <span className="text-sm text-green-600">+{stats.userGrowth}%</span>
                 </div>
               </div>
-              <Icon name="users" size="24" className="text-blue-600" />
+              <Icon name="users" size="20" className="text-blue-600" />
             </div>
           </CardContent>
         </Card>
@@ -240,7 +240,7 @@ const AdminDashboard: React.FC = () => {
                   <span className="text-sm text-green-600">+{stats.jobGrowth}%</span>
                 </div>
               </div>
-              <Icon name="briefcase" size="24" className="text-green-600" />
+              <Icon name="briefcase" size="20" className="text-green-600" />
             </div>
           </CardContent>
         </Card>
@@ -253,7 +253,7 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-2xl font-bold text-gray-900">{stats.pendingJobs}</p>
                 <p className="text-sm text-gray-600 mt-1">Jobs awaiting approval</p>
               </div>
-              <Icon name="clock" size="24" className="text-yellow-600" />
+              <Icon name="clock" size="20" className="text-yellow-600" />
             </div>
           </CardContent>
         </Card>
@@ -266,7 +266,7 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-2xl font-bold text-gray-900">{stats.flaggedContent}</p>
                 <p className="text-sm text-gray-600 mt-1">Requires attention</p>
               </div>
-              <Icon name="alert-triangle" size="24" className="text-red-600" />
+              <Icon name="alert-triangle" size="20" className="text-red-600" />
             </div>
           </CardContent>
         </Card>
@@ -601,7 +601,7 @@ const AdminDashboard: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-            <Icon name="shield" size="24" className="text-primary-600" />
+            <Icon name="shield" size="20" className="text-primary-600" />
             Admin Dashboard
           </h1>
           <p className="text-gray-600 mt-1">
