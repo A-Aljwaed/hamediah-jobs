@@ -1,198 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: layout">
-<section>
-    <!-- Page Header -->
-    <div class="py-12 bg-white border-b">
-        <div class="container">
-            <h1 class="text-4xl font-bold mb-4" th:text="#{jobs.list.title}">Browse Job Opportunities</h1>
-            <p class="text-gray-600 text-lg">Discover your next career move from our curated job listings</p>
-        </div>
-    </div>
+<section class="space-y-4">
+  <h1 class="text-2xl font-bold" th:text="#{jobs.list.title}">Latest jobs</h1>
 
-    <!-- Main Content -->
-    <div class="py-8 bg-gray-50">
-        <div class="container">
-            <div class="grid lg:grid-cols-4 gap-8">
-                <!-- Filters Sidebar -->
-                <aside class="lg:col-span-1">
-                    <div class="card" style="position: sticky; top: calc(var(--space-16) + 60px);">
-                        <h2 class="text-lg font-semibold mb-6">Filter Jobs</h2>
-                        
-                        <form data-job-filter>
-                            <!-- Search Filter -->
-                            <div class="form-group">
-                                <label for="filter-search" class="form-label">Keywords</label>
-                                <input type="text" 
-                                       id="filter-search"
-                                       name="q" 
-                                       th:value="${q}"
-                                       class="form-input" 
-                                       placeholder="Job title, skills..."
-                                       data-filter="search"
-                                       aria-label="Search by keywords" />
-                            </div>
+  <form method="get" class="flex gap-2">
+    <input type="text" name="q" th:value="${q}" class="border rounded px-3 py-2 w-full" th:placeholder="#{jobs.search.placeholder}" />
+    <button class="bg-black text-white px-4 py-2 rounded" th:text="#{jobs.search.button}">Search</button>
+  </form>
 
-                            <!-- Location Filter -->
-                            <div class="form-group">
-                                <label for="filter-location" class="form-label">Location</label>
-                                <select id="filter-location" 
-                                        class="form-select" 
-                                        data-filter="location"
-                                        aria-label="Filter by location">
-                                    <option value="all">All Locations</option>
-                                    <option value="remote">Remote</option>
-                                    <option value="berlin">Berlin</option>
-                                    <option value="munich">Munich</option>
-                                    <option value="hamburg">Hamburg</option>
-                                </select>
-                            </div>
-
-                            <!-- Job Type Filter -->
-                            <div class="form-group">
-                                <label for="filter-type" class="form-label">Job Type</label>
-                                <select id="filter-type" 
-                                        class="form-select" 
-                                        data-filter="type"
-                                        aria-label="Filter by job type">
-                                    <option value="all">All Types</option>
-                                    <option value="full-time">Full Time</option>
-                                    <option value="part-time">Part Time</option>
-                                    <option value="contract">Contract</option>
-                                    <option value="internship">Internship</option>
-                                </select>
-                            </div>
-
-                            <!-- Category Filter -->
-                            <div class="form-group">
-                                <label for="filter-category" class="form-label">Category</label>
-                                <select id="filter-category" 
-                                        class="form-select" 
-                                        data-filter="category"
-                                        aria-label="Filter by category">
-                                    <option value="all">All Categories</option>
-                                    <option value="technology">Technology</option>
-                                    <option value="design">Design</option>
-                                    <option value="marketing">Marketing</option>
-                                    <option value="sales">Sales</option>
-                                </select>
-                            </div>
-
-                            <button type="button" 
-                                    class="btn btn-sm btn-outline w-full" 
-                                    data-filter-clear>
-                                Clear Filters
-                            </button>
-                        </form>
-                    </div>
-                </aside>
-
-                <!-- Job Listings -->
-                <div class="lg:col-span-3">
-                    <!-- Results Count -->
-                    <div class="mb-6 d-flex justify-between align-center">
-                        <p class="text-gray-600" data-results-count>
-                            <span th:text="${#lists.size(jobs)}">0</span> jobs found
-                        </p>
-                        <select class="form-select" style="width: auto;" aria-label="Sort jobs">
-                            <option>Most Recent</option>
-                            <option>Most Relevant</option>
-                            <option>Salary: High to Low</option>
-                        </select>
-                    </div>
-
-                    <!-- Job Cards -->
-                    <div class="grid gap-6">
-                        <article class="job-card" 
-                                 th:each="j : ${jobs}"
-                                 th:attr="data-job-card='',
-                                          data-job-title=${j.title},
-                                          data-job-location=${j.location},
-                                          data-job-description=${#strings.abbreviate(j.description, 160)},
-                                          data-job-type='full-time',
-                                          data-job-category='technology',
-                                          data-job-id=${j.id}">
-                            <div class="job-card__header">
-                                <div class="flex-1">
-                                    <h2 class="job-card__title">
-                                        <a th:href="@{/jobs/{id}(id=${j.id})}" th:text="${j.title}">Software Engineer</a>
-                                    </h2>
-                                    <div class="job-card__company">
-                                        <svg width="16" height="16" fill="currentColor" aria-hidden="true">
-                                            <rect width="16" height="16" rx="2" opacity="0.2"/>
-                                            <rect x="3" y="3" width="10" height="10" rx="1"/>
-                                        </svg>
-                                        <span th:text="${j.company != null ? j.company.name : 'Company'}">Tech Corp</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="job-card__meta">
-                                <span class="job-card__meta-item">
-                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <path d="M8 2v3m0 0a3 3 0 100 6 3 3 0 000-6z"/>
-                                        <path d="M8 14a7 7 0 01-7-7"/>
-                                    </svg>
-                                    <span th:text="${j.location}">Remote</span>
-                                </span>
-                                <span class="job-card__meta-item">
-                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                        <circle cx="8" cy="8" r="6"/>
-                                        <path d="M8 4v4l2 2"/>
-                                    </svg>
-                                    <span th:text="${#temporals.format(j.createdAt, 'MMM dd, yyyy')}">Jan 15, 2025</span>
-                                </span>
-                            </div>
-
-                            <p class="job-card__description" th:text="${#strings.abbreviate(j.description, 160)}">
-                                Join our team as a Software Engineer where you'll work on cutting-edge projects...
-                            </p>
-
-                            <div class="job-card__tags">
-                                <span class="badge badge-primary">Full-time</span>
-                                <span class="badge badge-neutral">Remote</span>
-                                <span class="badge badge-neutral">Technology</span>
-                            </div>
-
-                            <div class="job-card__footer">
-                                <a th:href="@{/jobs/{id}(id=${j.id})}" class="btn btn-sm btn-primary">
-                                    View Details →
-                                </a>
-                                <button class="btn btn-sm btn-ghost" 
-                                        th:attr="data-bookmark-btn='', data-job-id=${j.id}"
-                                        aria-label="Save job"
-                                        aria-pressed="false"
-                                        title="Save this job">
-                                    ♡
-                                </button>
-                            </div>
-                        </article>
-
-                        <!-- No Results -->
-                        <div th:if="${#lists.isEmpty(jobs)}" class="card text-center py-16">
-                            <div class="text-6xl mb-4" aria-hidden="true">🔍</div>
-                            <h3 class="text-xl font-semibold mb-2" th:text="#{jobs.empty}">No jobs found</h3>
-                            <p class="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
-                            <a href="/jobs" class="btn btn-primary">View All Jobs</a>
-                        </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <nav class="pagination" aria-label="Job listings pagination" th:if="${not #lists.isEmpty(jobs)}">
-                        <a href="#" class="pagination__item pagination__item--disabled" aria-label="Previous page">
-                            ←
-                        </a>
-                        <a href="#" class="pagination__item pagination__item--active" aria-label="Page 1" aria-current="page">1</a>
-                        <a href="#" class="pagination__item" aria-label="Page 2">2</a>
-                        <a href="#" class="pagination__item" aria-label="Page 3">3</a>
-                        <span class="pagination__item pagination__item--disabled">...</span>
-                        <a href="#" class="pagination__item" aria-label="Page 10">10</a>
-                        <a href="#" class="pagination__item" aria-label="Next page">
-                            →
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="grid gap-3">
+    <article class="p-4 bg-white border rounded" th:each="j : ${jobs}">
+      <div class="flex justify-between">
+        <h2 class="font-semibold text-lg">
+          <a th:href="@{/jobs/{id}(id=${j.id})}" th:text="${j.title}">Job title</a>
+        </h2>
+        <span class="text-xs text-gray-500" th:text="${#temporals.format(j.createdAt, 'yyyy-MM-dd')}">2025-01-01</span>
+      </div>
+      <p class="text-gray-700">
+        <span th:text="${j.company != null ? j.company.name : '—'}">Company</span>
+        <span> · </span>
+        <span th:text="${j.location}">Location</span>
+      </p>
+      <p class="text-gray-600 line-clamp-2" th:text="${#strings.abbreviate(j.description, 160)}">Short description...</p>
+    </article>
+    <p th:if="${#lists.isEmpty(jobs)}" class="text-gray-600" th:text="#{jobs.empty}">No jobs found.</p>
+  </div>
 </section>
 </html>
