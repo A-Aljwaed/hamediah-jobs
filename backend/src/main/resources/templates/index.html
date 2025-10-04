@@ -1,40 +1,178 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: layout">
-<section class="space-y-6">
-    <div class="p-6 rounded bg-white border">
-        <h1 class="text-3xl font-bold" th:text="#{index.headline}">Find your next job</h1>
-        <p class="text-gray-600 mt-1" th:text="#{index.tagline}">Search and apply to jobs in English and Arabic.</p>
+<section>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container hero__container">
+            <h1 class="hero__title" th:text="#{index.headline}">Find Your Dream Career Today</h1>
+            <p class="hero__subtitle" th:text="#{index.tagline}">
+                Search and apply to thousands of jobs in English and Arabic. Your next opportunity awaits.
+            </p>
 
-        <form action="/jobs" method="get" class="mt-4 flex gap-2">
-            <input type="text" name="q" class="border rounded px-3 py-2 w-full"
-                   th:placeholder="#{jobs.search.placeholder}" placeholder="Search jobs" />
-            <button class="bg-black text-white px-4 py-2 rounded" th:text="#{jobs.search.button}">Search</button>
-        </form>
-
-        <div class="mt-3">
-            <a href="/jobs" class="inline-block text-sm text-gray-700 hover:text-black underline" th:text="#{index.cta.explore}">Explore Jobs</a>
+            <!-- Search Form -->
+            <div class="hero__search">
+                <form action="/jobs" method="get" class="search-form" role="search" aria-label="Job search">
+                    <input type="text" 
+                           name="q" 
+                           class="search-form__input"
+                           th:placeholder="#{jobs.search.placeholder}" 
+                           placeholder="Job title, keywords, or company"
+                           aria-label="Search jobs" />
+                    <button type="submit" class="search-form__button" th:text="#{jobs.search.button}">
+                        Search Jobs
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="space-y-3">
-        <h2 class="text-xl font-semibold" th:text="#{jobs.list.title}">Latest jobs</h2>
-        <div class="grid gap-3 md:grid-cols-2">
-            <article class="p-4 bg-white border rounded" th:each="j,iter : ${recentJobs}" th:if="${iter.index} < 6">
-                <div class="flex justify-between">
-                    <h3 class="font-semibold text-lg">
-                        <a th:href="@{/jobs/{id}(id=${j.id})}" th:text="${j.title}">Job title</a>
-                    </h3>
-                    <span class="text-xs text-gray-500" th:text="${#temporals.format(j.createdAt, 'yyyy-MM-dd')}">2025-01-01</span>
+    <!-- Stats Section -->
+    <div class="py-12 bg-white">
+        <div class="container">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="animate-fade-in">
+                    <div class="text-4xl font-bold text-brand mb-2">1000+</div>
+                    <div class="text-gray-600 text-sm">Active Jobs</div>
                 </div>
-                <p class="text-gray-700">
-                    <span th:text="${j.company != null ? j.company.name : '—'}">Company</span>
-                    <span> · </span>
-                    <span th:text="${j.location}">Location</span>
-                </p>
-            </article>
+                <div class="animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="text-4xl font-bold text-brand mb-2">500+</div>
+                    <div class="text-gray-600 text-sm">Companies</div>
+                </div>
+                <div class="animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-bold text-brand mb-2">10k+</div>
+                    <div class="text-gray-600 text-sm">Job Seekers</div>
+                </div>
+                <div class="animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="text-4xl font-bold text-brand mb-2">50+</div>
+                    <div class="text-gray-600 text-sm">Countries</div>
+                </div>
+            </div>
         </div>
-        <div>
-            <a href="/jobs" class="text-sm text-gray-700 hover:text-black underline" th:text="#{jobs.view.all}">View all jobs</a>
+    </div>
+
+    <!-- Featured Jobs Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4" th:text="#{jobs.list.title}">Latest Job Opportunities</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Explore the newest job postings from top companies across various industries
+                </p>
+            </div>
+
+            <!-- Job Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <article class="job-card" 
+                         th:each="j,iter : ${recentJobs}" 
+                         th:if="${iter.index} < 6"
+                         th:attr="data-job-card='',
+                                  data-job-title=${j.title},
+                                  data-job-location=${j.location},
+                                  data-job-id=${j.id}">
+                    <div class="job-card__header">
+                        <div class="flex-1">
+                            <h3 class="job-card__title">
+                                <a th:href="@{/jobs/{id}(id=${j.id})}" th:text="${j.title}">Software Engineer</a>
+                            </h3>
+                            <div class="job-card__company">
+                                <svg width="16" height="16" fill="currentColor" aria-hidden="true">
+                                    <rect width="16" height="16" rx="2" opacity="0.2"/>
+                                    <rect x="3" y="3" width="10" height="10" rx="1"/>
+                                </svg>
+                                <span th:text="${j.company != null ? j.company.name : 'Company'}">Tech Corp</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-success" th:if="${iter.index < 3}">New</span>
+                    </div>
+
+                    <div class="job-card__meta">
+                        <span class="job-card__meta-item">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M8 2v3m0 0a3 3 0 100 6 3 3 0 000-6z"/>
+                                <path d="M8 14a7 7 0 01-7-7"/>
+                            </svg>
+                            <span th:text="${j.location}">Remote</span>
+                        </span>
+                        <span class="job-card__meta-item">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <circle cx="8" cy="8" r="6"/>
+                                <path d="M8 4v4l2 2"/>
+                            </svg>
+                            <span th:text="${#temporals.format(j.createdAt, 'MMM dd')}">Jan 15</span>
+                        </span>
+                    </div>
+
+                    <div class="job-card__tags">
+                        <span class="badge badge-neutral">Full-time</span>
+                        <span class="badge badge-neutral">Remote</span>
+                    </div>
+
+                    <div class="job-card__footer">
+                        <a th:href="@{/jobs/{id}(id=${j.id})}" class="btn btn-sm btn-primary">
+                            View Details
+                        </a>
+                        <button class="btn btn-sm btn-ghost" 
+                                th:attr="data-bookmark-btn='', data-job-id=${j.id}"
+                                aria-label="Save job"
+                                aria-pressed="false">
+                            ♡
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <!-- View All Link -->
+            <div class="text-center">
+                <a href="/jobs" class="btn btn-lg btn-outline" th:text="#{jobs.view.all}">
+                    View All Jobs →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="py-16 bg-white">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Browse by Category</h2>
+                <p class="text-gray-600">Find jobs that match your expertise</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="/jobs?category=technology" class="category-tile">
+                    <div class="category-tile__icon" aria-hidden="true">💻</div>
+                    <div class="category-tile__title">Technology</div>
+                    <div class="category-tile__count">250 jobs</div>
+                </a>
+                <a href="/jobs?category=design" class="category-tile">
+                    <div class="category-tile__icon" aria-hidden="true">🎨</div>
+                    <div class="category-tile__title">Design</div>
+                    <div class="category-tile__count">120 jobs</div>
+                </a>
+                <a href="/jobs?category=marketing" class="category-tile">
+                    <div class="category-tile__icon" aria-hidden="true">📈</div>
+                    <div class="category-tile__title">Marketing</div>
+                    <div class="category-tile__count">180 jobs</div>
+                </a>
+                <a href="/jobs?category=sales" class="category-tile">
+                    <div class="category-tile__icon" aria-hidden="true">💼</div>
+                    <div class="category-tile__title">Sales</div>
+                    <div class="category-tile__count">95 jobs</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-16 bg-brand text-white">
+        <div class="container text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Find Your Next Opportunity?</h2>
+            <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+                Join thousands of professionals who have found their dream jobs through Hamediah
+            </p>
+            <a href="/jobs" class="btn btn-lg" style="background: white; color: var(--color-brand);">
+                Explore All Jobs →
+            </a>
         </div>
     </div>
 </section>
