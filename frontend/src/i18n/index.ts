@@ -1,6 +1,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+// Import namespaced translations
+import jobsEn from './locales/en/jobs.json';
+import jobsAr from './locales/ar/jobs.json';
+
 // Translation resources
 const resources = {
   en: {
@@ -204,7 +208,8 @@ const resources = {
         copyright: 'All rights reserved',
         madeWith: 'Made with ❤️ for job seekers worldwide'
       }
-    }
+    },
+    jobs: jobsEn
   },
   ar: {
     translation: {
@@ -407,7 +412,8 @@ const resources = {
         copyright: 'جميع الحقوق محفوظة',
         madeWith: 'صُنع بـ ❤️ للباحثين عن عمل في جميع أنحاء العالم'
       }
-    }
+    },
+    jobs: jobsAr
   }
 };
 

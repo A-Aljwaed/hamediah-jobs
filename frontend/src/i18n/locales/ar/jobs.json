@@ -1,0 +1,194 @@
+{
+  "landing": {
+    "hero": {
+      "title": "ابحث عن وظيفة أحلامك اليوم",
+      "subtitle": "تواصل مع أفضل أصحاب العمل واكتشف الفرص التي تناسب مهاراتك",
+      "searchPlaceholder": "المسمى الوظيفي أو الكلمات المفتاحية أو الشركة",
+      "locationPlaceholder": "المدينة أو عن بُعد",
+      "searchButton": "ابحث عن وظائف",
+      "stats": {
+        "activeJobs": "وظيفة نشطة",
+        "companies": "شركة توظف",
+        "successRate": "معدل النجاح"
+      }
+    },
+    "categories": {
+      "title": "تصفح حسب الفئة",
+      "subtitle": "استكشف الفرص في مجالك",
+      "viewAll": "عرض جميع الفئات"
+    },
+    "featured": {
+      "title": "الوظائف المميزة",
+      "subtitle": "فرص مختارة بعناية من أفضل الشركات",
+      "viewAll": "عرض جميع الوظائف"
+    },
+    "hot": {
+      "title": "الوظائف الساخنة",
+      "subtitle": "فرص رائجة لا تريد تفويتها"
+    },
+    "testimonials": {
+      "title": "قصص النجاح",
+      "subtitle": "اسمع من الباحثين عن عمل الذين وجدوا وظائف أحلامهم"
+    },
+    "pricing": {
+      "title": "انشر وظيفتك",
+      "subtitle": "اختر الخطة المناسبة لاحتياجات التوظيف الخاصة بك",
+      "perJob": "لكل وظيفة",
+      "perMonth": "شهرياً",
+      "selectPlan": "اختر الخطة",
+      "mostPopular": "الأكثر شعبية"
+    },
+    "blog": {
+      "title": "موارد الوظائف",
+      "subtitle": "نصائح وإرشادات ورؤى للبحث عن عمل",
+      "readMore": "اقرأ المزيد",
+      "minRead": "دقيقة قراءة"
+    },
+    "cta": {
+      "employer": {
+        "title": "توظف؟ انشر وظيفتك",
+        "subtitle": "وصل إلى آلاف المرشحين المؤهلين",
+        "button": "انشر وظيفة"
+      },
+      "seeker": {
+        "title": "تبحث عن عمل؟",
+        "subtitle": "أنشئ ملفك الشخصي واجعل الشركات تكتشفك",
+        "button": "إنشاء ملف شخصي"
+      }
+    }
+  },
+  "browse": {
+    "title": "تصفح الوظائف",
+    "subtitle": "ابحث عن فرصتك التالية",
+    "results": "تم العثور على {{count}} وظيفة",
+    "noResults": "لم يتم العثور على وظائف",
+    "noResultsMessage": "حاول تعديل الفلاتر أو مصطلحات البحث",
+    "filters": {
+      "title": "الفلاتر",
+      "clear": "مسح الكل",
+      "apply": "تطبيق الفلاتر",
+      "keyword": "الكلمة المفتاحية",
+      "location": "الموقع",
+      "category": "الفئة",
+      "jobType": "نوع الوظيفة",
+      "experienceLevel": "مستوى الخبرة",
+      "salary": "نطاق الراتب",
+      "remote": "عن بُعد فقط",
+      "featured": "مميزة فقط",
+      "types": {
+        "fullTime": "دوام كامل",
+        "partTime": "دوام جزئي",
+        "contract": "عقد",
+        "internship": "تدريب"
+      },
+      "levels": {
+        "entry": "مبتدئ",
+        "mid": "متوسط",
+        "senior": "كبير",
+        "lead": "قيادي/مدير"
+      }
+    },
+    "sort": {
+      "label": "ترتيب حسب",
+      "relevance": "الملاءمة",
+      "date": "تاريخ النشر",
+      "salary": "الراتب"
+    },
+    "view": {
+      "grid": "عرض شبكي",
+      "list": "عرض قائمة"
+    }
+  },
+  "post": {
+    "title": "انشر وظيفة",
+    "subtitle": "ابحث عن موظفك المثالي التالي",
+    "steps": {
+      "jobInfo": "معلومات الوظيفة",
+      "companyInfo": "معلومات الشركة",
+      "recruiterInfo": "معلومات الاتصال",
+      "review": "المراجعة والنشر"
+    },
+    "jobInfo": {
+      "title": "تفاصيل الوظيفة",
+      "subtitle": "أخبرنا عن الوظيفة",
+      "jobTitle": "المسمى الوظيفي",
+      "jobTitlePlaceholder": "مثل: مهندس برمجيات أول",
+      "description": "وصف الوظيفة",
+      "descriptionPlaceholder": "صف الدور والمسؤوليات والمتطلبات...",
+      "location": "الموقع",
+      "locationPlaceholder": "مثل: الرياض، السعودية أو عن بُعد",
+      "jobType": "نوع الوظيفة",
+      "experienceLevel": "مستوى الخبرة",
+      "salary": "نطاق الراتب (اختياري)",
+      "salaryMin": "الحد الأدنى",
+      "salaryMax": "الحد الأقصى",
+      "salaryCurrency": "العملة",
+      "remote": "وظيفة عن بُعد",
+      "skills": "المهارات المطلوبة",
+      "skillsPlaceholder": "أضف مهارة (اضغط Enter)",
+      "benefits": "المزايا (اختياري)",
+      "benefitsPlaceholder": "أضف ميزة (اضغط Enter)",
+      "deadline": "الموعد النهائي للتقديم (اختياري)"
+    },
+    "companyInfo": {
+      "title": "تفاصيل الشركة",
+      "subtitle": "أخبر المرشحين عن شركتك",
+      "companyName": "اسم الشركة",
+      "companyWebsite": "موقع الشركة",
+      "companyLogo": "شعار الشركة (اختياري)",
+      "uploadLogo": "رفع الشعار",
+      "logoHint": "PNG أو JPG، بحد أقصى 2 ميجابايت"
+    },
+    "recruiterInfo": {
+      "title": "معلومات الاتصال",
+      "subtitle": "كيف يمكن للمرشحين التواصل معك؟",
+      "recruiterName": "اسمك",
+      "recruiterEmail": "بريدك الإلكتروني",
+      "recruiterPhone": "رقم الهاتف (اختياري)"
+    },
+    "actions": {
+      "back": "السابق",
+      "next": "التالي",
+      "submit": "نشر الوظيفة",
+      "submitting": "جاري النشر...",
+      "saveDraft": "حفظ كمسودة"
+    },
+    "success": {
+      "title": "تم نشر الوظيفة بنجاح!",
+      "message": "إعلان وظيفتك الآن مباشر ومرئي للمرشحين",
+      "viewJob": "عرض الوظيفة",
+      "postAnother": "انشر وظيفة أخرى"
+    },
+    "errors": {
+      "generic": "فشل في نشر الوظيفة. يرجى المحاولة مرة أخرى.",
+      "validation": "يرجى إصلاح الأخطاء قبل الإرسال"
+    }
+  },
+  "card": {
+    "viewDetails": "عرض التفاصيل",
+    "apply": "تقدم الآن",
+    "save": "حفظ",
+    "saved": "محفوظ",
+    "featured": "مميز",
+    "hot": "ساخن",
+    "new": "جديد",
+    "remote": "عن بُعد",
+    "postedBy": "نشرت بواسطة {{name}}",
+    "postedDate": "نشرت {{date}}",
+    "applicants": "{{count}} متقدم",
+    "salary": "{{min}} - {{max}} {{currency}}",
+    "negotiable": "قابل للتفاوض"
+  },
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "page": "صفحة {{page}} من {{total}}",
+    "showing": "عرض {{from}}-{{to}} من {{total}}"
+  },
+  "breadcrumbs": {
+    "home": "الرئيسية",
+    "jobs": "الوظائف",
+    "browse": "تصفح",
+    "post": "انشر وظيفة"
+  }
+}
