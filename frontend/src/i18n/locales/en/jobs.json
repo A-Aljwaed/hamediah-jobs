@@ -1,0 +1,194 @@
+{
+  "landing": {
+    "hero": {
+      "title": "Find Your Dream Job Today",
+      "subtitle": "Connect with top employers and discover opportunities that match your skills",
+      "searchPlaceholder": "Job title, keywords, or company",
+      "locationPlaceholder": "City or remote",
+      "searchButton": "Search Jobs",
+      "stats": {
+        "activeJobs": "Active Jobs",
+        "companies": "Companies Hiring",
+        "successRate": "Success Rate"
+      }
+    },
+    "categories": {
+      "title": "Browse by Category",
+      "subtitle": "Explore opportunities in your field",
+      "viewAll": "View All Categories"
+    },
+    "featured": {
+      "title": "Featured Jobs",
+      "subtitle": "Hand-picked opportunities from top companies",
+      "viewAll": "View All Jobs"
+    },
+    "hot": {
+      "title": "Hot Jobs",
+      "subtitle": "Trending opportunities you don't want to miss"
+    },
+    "testimonials": {
+      "title": "Success Stories",
+      "subtitle": "Hear from job seekers who found their dream careers"
+    },
+    "pricing": {
+      "title": "Post Your Job",
+      "subtitle": "Choose the right plan for your hiring needs",
+      "perJob": "per job",
+      "perMonth": "per month",
+      "selectPlan": "Select Plan",
+      "mostPopular": "Most Popular"
+    },
+    "blog": {
+      "title": "Career Resources",
+      "subtitle": "Tips, guides, and insights for your job search",
+      "readMore": "Read More",
+      "minRead": "min read"
+    },
+    "cta": {
+      "employer": {
+        "title": "Hiring? Post Your Job",
+        "subtitle": "Reach thousands of qualified candidates",
+        "button": "Post a Job"
+      },
+      "seeker": {
+        "title": "Looking for Work?",
+        "subtitle": "Create your profile and get discovered",
+        "button": "Create Profile"
+      }
+    }
+  },
+  "browse": {
+    "title": "Browse Jobs",
+    "subtitle": "Find your next opportunity",
+    "results": "{{count}} jobs found",
+    "noResults": "No jobs found",
+    "noResultsMessage": "Try adjusting your filters or search terms",
+    "filters": {
+      "title": "Filters",
+      "clear": "Clear All",
+      "apply": "Apply Filters",
+      "keyword": "Keyword",
+      "location": "Location",
+      "category": "Category",
+      "jobType": "Job Type",
+      "experienceLevel": "Experience Level",
+      "salary": "Salary Range",
+      "remote": "Remote Only",
+      "featured": "Featured Only",
+      "types": {
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "contract": "Contract",
+        "internship": "Internship"
+      },
+      "levels": {
+        "entry": "Entry Level",
+        "mid": "Mid Level",
+        "senior": "Senior Level",
+        "lead": "Lead/Manager"
+      }
+    },
+    "sort": {
+      "label": "Sort by",
+      "relevance": "Relevance",
+      "date": "Date Posted",
+      "salary": "Salary"
+    },
+    "view": {
+      "grid": "Grid View",
+      "list": "List View"
+    }
+  },
+  "post": {
+    "title": "Post a Job",
+    "subtitle": "Find your next great hire",
+    "steps": {
+      "jobInfo": "Job Information",
+      "companyInfo": "Company Information",
+      "recruiterInfo": "Contact Information",
+      "review": "Review & Publish"
+    },
+    "jobInfo": {
+      "title": "Job Details",
+      "subtitle": "Tell us about the position",
+      "jobTitle": "Job Title",
+      "jobTitlePlaceholder": "e.g. Senior Software Engineer",
+      "description": "Job Description",
+      "descriptionPlaceholder": "Describe the role, responsibilities, and requirements...",
+      "location": "Location",
+      "locationPlaceholder": "e.g. New York, NY or Remote",
+      "jobType": "Job Type",
+      "experienceLevel": "Experience Level",
+      "salary": "Salary Range (Optional)",
+      "salaryMin": "Minimum",
+      "salaryMax": "Maximum",
+      "salaryCurrency": "Currency",
+      "remote": "Remote Position",
+      "skills": "Required Skills",
+      "skillsPlaceholder": "Add skills (press Enter)",
+      "benefits": "Benefits (Optional)",
+      "benefitsPlaceholder": "Add benefits (press Enter)",
+      "deadline": "Application Deadline (Optional)"
+    },
+    "companyInfo": {
+      "title": "Company Details",
+      "subtitle": "Tell candidates about your company",
+      "companyName": "Company Name",
+      "companyWebsite": "Company Website",
+      "companyLogo": "Company Logo (Optional)",
+      "uploadLogo": "Upload Logo",
+      "logoHint": "PNG or JPG, max 2MB"
+    },
+    "recruiterInfo": {
+      "title": "Contact Information",
+      "subtitle": "How should candidates reach you?",
+      "recruiterName": "Your Name",
+      "recruiterEmail": "Your Email",
+      "recruiterPhone": "Phone Number (Optional)"
+    },
+    "actions": {
+      "back": "Back",
+      "next": "Next",
+      "submit": "Publish Job",
+      "submitting": "Publishing...",
+      "saveDraft": "Save as Draft"
+    },
+    "success": {
+      "title": "Job Posted Successfully!",
+      "message": "Your job posting is now live and visible to candidates",
+      "viewJob": "View Job",
+      "postAnother": "Post Another Job"
+    },
+    "errors": {
+      "generic": "Failed to post job. Please try again.",
+      "validation": "Please fix the errors before submitting"
+    }
+  },
+  "card": {
+    "viewDetails": "View Details",
+    "apply": "Apply Now",
+    "save": "Save",
+    "saved": "Saved",
+    "featured": "Featured",
+    "hot": "Hot",
+    "new": "New",
+    "remote": "Remote",
+    "postedBy": "Posted by {{name}}",
+    "postedDate": "Posted {{date}}",
+    "applicants": "{{count}} applicants",
+    "salary": "{{min}} - {{max}} {{currency}}",
+    "negotiable": "Negotiable"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{total}}",
+    "showing": "Showing {{from}}-{{to}} of {{total}}"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "jobs": "Jobs",
+    "browse": "Browse",
+    "post": "Post a Job"
+  }
+}
