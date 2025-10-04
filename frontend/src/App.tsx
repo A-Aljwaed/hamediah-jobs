@@ -10,6 +10,7 @@ import JobDetail from './pages/JobDetail';
 import Login from './pages/Login';
 import CreateJob from './pages/CreateJob';
 import AdminPanel from './pages/AdminPanel';
+import { JobsLandingPage, BrowseJobsPage, PostJobPage } from './features/jobs';
 import './i18n'; // Initialize i18n
 
 function App() {
@@ -19,8 +20,11 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/jobs" element={<EnhancedJobList />} />
+            <Route path="/jobs" element={<JobsLandingPage />} />
+            <Route path="/jobs/browse" element={<BrowseJobsPage />} />
+            <Route path="/jobs/post" element={<PostJobPage />} />
             <Route path="/jobs/simple" element={<JobList />} />
+            <Route path="/jobs/legacy" element={<EnhancedJobList />} />
             <Route path="/jobs/:id" element={<JobDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-job" element={<CreateJob />} />
@@ -39,14 +43,14 @@ function App() {
           success: {
             duration: 3000,
             iconTheme: {
-              primary: '#22c55e',
+              primary: '#17BE75',
               secondary: '#fff',
             },
           },
           error: {
             duration: 4000,
             iconTheme: {
-              primary: '#ef4444',
+              primary: '#D9544D',
               secondary: '#fff',
             },
           },
