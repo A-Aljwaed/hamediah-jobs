@@ -1,0 +1,140 @@
+/**
+ * Hamediah Jobs - Design System Variables
+ * Modern Green Color Palette with Typography Tokens
+ * Version: 1.0.0
+ */
+
+:root {
+  /* === Color Palette - Green Primary === */
+  --color-brand: #22A35D;
+  --color-brand-hover: #1B8A4E;
+  --color-brand-light: #E6F7EF;
+  --color-brand-dark: #0F5C33;
+  
+  /* === Secondary Accents === */
+  --color-accent-amber: #FFC447;
+  --color-accent-teal: #0FAF9A;
+  
+  /* === Neutral Gray Scale === */
+  --gray-50: #F8FAF9;
+  --gray-100: #EEF2F0;
+  --gray-200: #D9E1DD;
+  --gray-300: #B9C5BE;
+  --gray-400: #93A39B;
+  --gray-500: #6E7F77;
+  --gray-600: #4E5C56;
+  --gray-700: #394540;
+  --gray-800: #25302B;
+  --gray-900: #131A17;
+  
+  /* === Feedback Colors === */
+  --color-success: #219A6F;
+  --color-warning: #E5A100;
+  --color-error: #D8504D;
+  --color-info: #2583C7;
+  
+  /* === Border Radius === */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-round: 50%;
+  
+  /* === Shadows === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px -4px rgba(0, 0, 0, 0.16);
+  --shadow-focus: 0 0 0 3px rgba(34, 163, 93, 0.35);
+  --shadow-glow: 0 0 20px rgba(34, 163, 93, 0.25);
+  
+  /* === Typography === */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* === Font Sizes (Fluid Typography) === */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  
+  /* Fluid Headings */
+  --h1-size: clamp(2.2rem, 1.5rem + 2.2vw, 3.4rem);
+  --h2-size: clamp(1.9rem, 1.3rem + 1.8vw, 2.6rem);
+  --h3-size: clamp(1.6rem, 1.2rem + 1.2vw, 2rem);
+  --h4-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem);
+  --h5-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  --h6-size: 1rem;
+  
+  /* === Line Heights === */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* === Font Weights === */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* === Spacing Scale === */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  
+  /* === Transitions === */
+  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* === Z-Index Scale === */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-tooltip: 1060;
+  
+  /* === Gradients === */
+  --gradient-primary: linear-gradient(145deg, #0F5C33 0%, #22A35D 60%, #35C879 100%);
+  --gradient-hero: linear-gradient(135deg, #0F5C33 0%, #22A35D 50%, #2DB76B 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(15, 92, 51, 0) 0%, rgba(15, 92, 51, 0.8) 100%);
+  
+  /* === Layout === */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+}
+
+/* Dark Mode Support (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-50: #25302B;
+    --gray-100: #394540;
+    --gray-200: #4E5C56;
+    --gray-900: #F8FAF9;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-base: 0ms;
+    --transition-fast: 0ms;
+    --transition-slow: 0ms;
+  }
+}
