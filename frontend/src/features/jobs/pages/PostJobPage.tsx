@@ -235,7 +235,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.jobInfo.jobTitle')}
                   name="title"
-                  error={errors.title?.message}
+                  error={errors.title?.message as string}
                   required
                 >
                   <Input
@@ -248,7 +248,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.jobInfo.description')}
                   name="description"
-                  error={errors.description?.message}
+                  error={errors.description?.message as string}
                   required
                 >
                   <textarea
@@ -262,7 +262,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.jobInfo.location')}
                   name="location"
-                  error={errors.location?.message}
+                  error={errors.location?.message as string}
                   required
                 >
                   <Input
@@ -276,7 +276,7 @@ export const PostJobPage: React.FC = () => {
                   <FormField
                     label={t('post.jobInfo.jobType')}
                     name="jobType"
-                    error={errors.jobType?.message}
+                    error={errors.jobType?.message as string}
                     required
                   >
                     <select
@@ -294,7 +294,7 @@ export const PostJobPage: React.FC = () => {
                   <FormField
                     label={t('post.jobInfo.experienceLevel')}
                     name="experienceLevel"
-                    error={errors.experienceLevel?.message}
+                    error={errors.experienceLevel?.message as string}
                     required
                   >
                     <select
@@ -433,7 +433,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.companyInfo.companyName')}
                   name="companyName"
-                  error={errors.companyName?.message}
+                  error={errors.companyName?.message as string}
                   required
                 >
                   <Input {...register('companyName')} className="w-full" />
@@ -442,7 +442,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.companyInfo.companyWebsite')}
                   name="companyWebsite"
-                  error={errors.companyWebsite?.message}
+                  error={errors.companyWebsite?.message as string}
                 >
                   <Input
                     {...register('companyWebsite')}
@@ -468,10 +468,10 @@ export const PostJobPage: React.FC = () => {
                       className="hidden"
                       id="logo-upload"
                     />
-                    <label htmlFor="logo-upload">
-                      <Button type="button" variant="outline" size="sm" as="span">
+                    <label htmlFor="logo-upload" className="cursor-pointer">
+                      <span className="inline-flex items-center justify-center rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus:ring-primary-500 h-9 px-4 text-sm">
                         Choose File
-                      </Button>
+                      </span>
                     </label>
                   </div>
                 </FormField>
@@ -491,7 +491,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.recruiterInfo.recruiterName')}
                   name="recruiterName"
-                  error={errors.recruiterName?.message}
+                  error={errors.recruiterName?.message as string}
                   required
                 >
                   <Input {...register('recruiterName')} className="w-full" />
@@ -500,7 +500,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.recruiterInfo.recruiterEmail')}
                   name="recruiterEmail"
-                  error={errors.recruiterEmail?.message}
+                  error={errors.recruiterEmail?.message as string}
                   required
                 >
                   <Input {...register('recruiterEmail')} type="email" className="w-full" />
@@ -509,7 +509,7 @@ export const PostJobPage: React.FC = () => {
                 <FormField
                   label={t('post.recruiterInfo.recruiterPhone')}
                   name="recruiterPhone"
-                  error={errors.recruiterPhone?.message}
+                  error={errors.recruiterPhone?.message as string}
                 >
                   <Input {...register('recruiterPhone')} type="tel" className="w-full" />
                 </FormField>

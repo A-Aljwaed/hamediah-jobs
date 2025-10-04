@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, MapPin, Briefcase, Users, TrendingUp, Building2, Code, Palette, ShoppingBag, Stethoscope, GraduationCap, DollarSign } from 'lucide-react';
+import { Search, MapPin, Building2, Users } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/Input';
 import { CategoryTile } from '../components/CategoryTile';
@@ -9,7 +9,7 @@ import { FeaturedJobCard } from '../components/FeaturedJobCard';
 import { JobExtended, JobCategory } from '../types';
 
 export const JobsLandingPage: React.FC = () => {
-  const { t, i18n } = useTranslation('jobs');
+  const { t } = useTranslation('jobs');
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
   const [location, setLocation] = useState('');

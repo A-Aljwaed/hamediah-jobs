@@ -3,7 +3,7 @@
  * Extends base Job type with additional fields for UI module
  */
 
-import { Job as BaseJob, Company } from '../../../types';
+import { Job as BaseJob } from '../../../types';
 
 export interface JobExtended extends BaseJob {
   salary?: string;
@@ -56,32 +56,8 @@ export interface JobsResponse {
   pagination: PaginationParams;
 }
 
-export interface PostJobFormData {
-  // Job Info
-  title: string;
-  description: string;
-  location: string;
-  jobType: string;
-  experienceLevel: string;
-  salaryMin?: number;
-  salaryMax?: number;
-  salaryCurrency?: string;
-  remote: boolean;
-  skills: string[];
-  benefits?: string[];
-  applicationDeadline?: string;
-  
-  // Company Info
-  companyId?: number;
-  companyName?: string;
-  companyWebsite?: string;
-  companyLogo?: File;
-  
-  // Recruiter Info
-  recruiterName: string;
-  recruiterEmail: string;
-  recruiterPhone?: string;
-}
+// PostJobFormData is defined in validation/schemas.ts using Zod inference
+// to avoid duplication and ensure validation schema is single source of truth
 
 export interface Testimonial {
   id: number;

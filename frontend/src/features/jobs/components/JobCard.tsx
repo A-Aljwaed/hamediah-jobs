@@ -17,8 +17,7 @@ interface JobCardProps {
 
 export const JobCard: React.FC<JobCardProps> = React.memo(
   ({ job, onSave, isSaved = false, variant = 'default', className = '' }) => {
-    const { t, i18n } = useTranslation('jobs');
-    const isRTL = i18n.language === 'ar';
+    const { t } = useTranslation('jobs');
 
     const formatSalary = () => {
       if (!job.salaryMin && !job.salaryMax) return null;
