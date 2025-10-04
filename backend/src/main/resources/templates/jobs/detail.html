@@ -1,15 +1,232 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: layout">
-<section class="space-y-3" th:if="${job}">
-  <p class="text-sm"><a href="/jobs" class="text-gray-600 hover:underline" th:text="#{jobs.back}">Back to jobs</a></p>
-  <h1 class="text-3xl font-bold" th:text="${job.title}">Job title</h1>
-  <p class="text-gray-700">
-    <span th:text="${job.company != null ? job.company.name : '—'}">Company</span>
-    <span> · </span>
-    <span th:text="${job.location}">Location</span>
-  </p>
-  <article class="prose max-w-none" th:utext="${#strings.escapeXml(job.description).replaceAll('\n','<br/>')}">
-    Job description...
-  </article>
+<section th:if="${job}">
+    <!-- Breadcrumb Navigation -->
+    <div class="py-6 bg-white border-b">
+        <div class="container">
+            <nav aria-label="Breadcrumb">
+                <a href="/jobs" class="btn btn-sm btn-ghost" th:text="#{jobs.back}">
+                    ← Back to Jobs
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Job Header -->
+    <div class="py-12 bg-white">
+        <div class="container">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <div class="mb-6">
+                        <h1 class="text-4xl font-bold mb-4" th:text="${job.title}">Software Engineer</h1>
+                        
+                        <div class="d-flex flex-wrap gap-4 mb-6 text-gray-600">
+                            <div class="d-flex align-center gap-2">
+                                <svg width="20" height="20" fill="currentColor" aria-hidden="true">
+                                    <rect width="20" height="20" rx="3" opacity="0.2"/>
+                                    <rect x="4" y="4" width="12" height="12" rx="2"/>
+                                </svg>
+                                <span th:text="${job.company != null ? job.company.name : 'Company'}">Tech Corp</span>
+                            </div>
+                            <div class="d-flex align-center gap-2">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M10 3v4m0 0a4 4 0 100 8 4 4 0 000-8z"/>
+                                    <path d="M10 18a9 9 0 01-9-9"/>
+                                </svg>
+                                <span th:text="${job.location}">Berlin, Germany</span>
+                            </div>
+                            <div class="d-flex align-center gap-2">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <circle cx="10" cy="10" r="8"/>
+                                    <path d="M10 6v4l3 3"/>
+                                </svg>
+                                <span th:text="${#temporals.format(job.createdAt, 'MMM dd, yyyy')}">Posted: Jan 15, 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-3 mb-6">
+                            <span class="badge badge-primary">Full-time</span>
+                            <span class="badge badge-success">Remote</span>
+                            <span class="badge badge-neutral">Technology</span>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-primary btn-lg">Apply Now</button>
+                            <button class="btn btn-outline btn-lg" 
+                                    th:attr="data-bookmark-btn='', data-job-id=${job.id}"
+                                    aria-label="Save job"
+                                    aria-pressed="false">
+                                Save Job
+                            </button>
+                            <button class="btn btn-ghost btn-lg" aria-label="Share job">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M15 7a3 3 0 11-6 0 3 3 0 016 0zM15 17a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path d="M6 11a3 3 0 100-6 3 3 0 000 6z"/>
+                                    <path d="M13 9l-6 3m0 4l6-3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Quick Info -->
+                <div class="lg:col-span-1">
+                    <div class="card" style="position: sticky; top: calc(var(--space-16) + 60px);">
+                        <h2 class="text-lg font-semibold mb-4">Job Information</h2>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="text-sm text-gray-600 mb-1">Salary Range</div>
+                                <div class="font-semibold">$80k - $120k</div>
+                            </div>
+                            
+                            <div>
+                                <div class="text-sm text-gray-600 mb-1">Job Type</div>
+                                <div class="font-semibold">Full-time</div>
+                            </div>
+                            
+                            <div>
+                                <div class="text-sm text-gray-600 mb-1">Experience Level</div>
+                                <div class="font-semibold">Mid-Senior</div>
+                            </div>
+                            
+                            <div>
+                                <div class="text-sm text-gray-600 mb-1">Remote</div>
+                                <div class="font-semibold">Yes</div>
+                            </div>
+
+                            <div class="pt-4 border-t">
+                                <div class="text-sm text-gray-600 mb-1">Posted</div>
+                                <div class="font-semibold" th:text="${#temporals.format(job.createdAt, 'MMM dd, yyyy')}">Jan 15, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Description -->
+    <div class="py-12 bg-gray-50">
+        <div class="container">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="card">
+                        <h2 class="text-2xl font-bold mb-6">Job Description</h2>
+                        
+                        <article class="prose max-w-none" 
+                                 style="line-height: 1.7; color: var(--gray-700);"
+                                 th:utext="${#strings.escapeXml(job.description).replaceAll('\n','<br/>')}">
+                            <p>We are looking for a talented Software Engineer to join our growing team...</p>
+                            <p>In this role, you will work on cutting-edge projects...</p>
+                        </article>
+
+                        <div class="mt-8 pt-8 border-t">
+                            <h3 class="text-xl font-semibold mb-4">Requirements</h3>
+                            <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--gray-700);">
+                                <li class="mb-2">Bachelor's degree in Computer Science or related field</li>
+                                <li class="mb-2">3+ years of experience in software development</li>
+                                <li class="mb-2">Strong knowledge of Java, Python, or similar languages</li>
+                                <li class="mb-2">Experience with modern web frameworks</li>
+                                <li class="mb-2">Excellent problem-solving skills</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t">
+                            <h3 class="text-xl font-semibold mb-4">Benefits</h3>
+                            <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--gray-700);">
+                                <li class="mb-2">Competitive salary and equity</li>
+                                <li class="mb-2">Remote work flexibility</li>
+                                <li class="mb-2">Health insurance</li>
+                                <li class="mb-2">Professional development budget</li>
+                                <li class="mb-2">Team events and company culture</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t text-center">
+                            <button class="btn btn-primary btn-lg">Apply for this Position</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Info -->
+                <div class="lg:col-span-1">
+                    <!-- Company Info -->
+                    <div class="card mb-6">
+                        <h3 class="text-lg font-semibold mb-4">About the Company</h3>
+                        <p class="text-gray-700 text-sm mb-4" th:if="${job.company}">
+                            <span th:text="${job.company.name}">Tech Corp</span> is a leading technology company focused on innovation and excellence.
+                        </p>
+                        <a href="#" class="btn btn-sm btn-outline w-full">View Company Profile</a>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-4">Share this Job</h3>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-ghost flex-1" aria-label="Share on Twitter">
+                                <svg width="16" height="16" fill="currentColor">
+                                    <path d="M16 3c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4C.7 7.7 1.8 9 3.3 9.3c-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H0c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4C15 4.3 15.6 3.7 16 3z"/>
+                                </svg>
+                            </button>
+                            <button class="btn btn-sm btn-ghost flex-1" aria-label="Share on LinkedIn">
+                                <svg width="16" height="16" fill="currentColor">
+                                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                                </svg>
+                            </button>
+                            <button class="btn btn-sm btn-ghost flex-1" aria-label="Copy link">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Similar Jobs -->
+    <div class="py-12 bg-white">
+        <div class="container">
+            <h2 class="text-3xl font-bold mb-8">Similar Jobs</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Sample similar job cards -->
+                <article class="job-card">
+                    <div class="job-card__header">
+                        <div class="flex-1">
+                            <h3 class="job-card__title">
+                                <a href="#">Senior Software Engineer</a>
+                            </h3>
+                            <div class="job-card__company">
+                                <svg width="16" height="16" fill="currentColor" aria-hidden="true">
+                                    <rect width="16" height="16" rx="2" opacity="0.2"/>
+                                    <rect x="3" y="3" width="10" height="10" rx="1"/>
+                                </svg>
+                                <span>Another Company</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-card__meta">
+                        <span class="job-card__meta-item">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M8 2v3m0 0a3 3 0 100 6 3 3 0 000-6z"/>
+                            </svg>
+                            <span>Munich</span>
+                        </span>
+                    </div>
+                    <div class="job-card__tags">
+                        <span class="badge badge-primary">Full-time</span>
+                        <span class="badge badge-neutral">Remote</span>
+                    </div>
+                    <div class="job-card__footer">
+                        <a href="#" class="btn btn-sm btn-primary">View Details</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 </section>
 </html>
