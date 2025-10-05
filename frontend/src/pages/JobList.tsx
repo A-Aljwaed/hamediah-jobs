@@ -140,7 +140,7 @@ const JobList: React.FC = () => {
   if (loading) {
     return (
       <div className="-mx-4 -mt-4">
-        <section className="bg-gradient-to-r from-blue-50 to-purple-50 py-12 px-4">
+        <section className="bg-gradient-to-r from-emerald-50 to-emerald-100 py-12 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -185,7 +185,7 @@ const JobList: React.FC = () => {
   return (
     <div className="-mx-4 -mt-4">
       {/* Header Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-purple-50 py-12 px-4">
+      <section className="bg-gradient-to-r from-emerald-50 to-emerald-100 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">

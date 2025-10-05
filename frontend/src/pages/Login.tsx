@@ -33,12 +33,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="-mx-4 -mt-4 min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="-mx-4 -mt-4 min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-100">
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           {/* Header */}
           <div className="text-center">
-            <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+            <div className="mx-auto h-16 w-16 bg-gradient-to-r from-emerald-700 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
               <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
@@ -129,7 +129,7 @@ const Login: React.FC = () => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded"
                   />
                   <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
                     Remember me
@@ -137,7 +137,7 @@ const Login: React.FC = () => {
                 </div>
 
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+                  <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
                     Forgot your password?
                   </a>
                 </div>
@@ -165,14 +165,14 @@ const Login: React.FC = () => {
             </form>
 
             {/* Demo credentials */}
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mt-6 p-4 bg-emerald-50 rounded-lg border border-emerald-200">
               <div className="flex items-center gap-2 mb-2">
-                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span className="text-sm font-medium text-blue-900">Demo Credentials</span>
+                <span className="text-sm font-medium text-emerald-900">Demo Credentials</span>
               </div>
-              <p className="text-sm text-blue-700">
+              <p className="text-sm text-emerald-700">
                 <strong>Username:</strong> admin<br />
                 <strong>Password:</strong> password
               </p>
@@ -183,7 +183,7 @@ const Login: React.FC = () => {
           <div className="text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+              <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
                 Sign up for free
               </a>
             </p>

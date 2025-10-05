@@ -139,7 +139,7 @@ const CreateJob: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+            className="bg-emerald-600 text-white px-6 py-2 rounded hover:bg-emerald-700 disabled:opacity-50"
           >
             {loading ? 'Creating...' : 'Create Job'}
           </button>

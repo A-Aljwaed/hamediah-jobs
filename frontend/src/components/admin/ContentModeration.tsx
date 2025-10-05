@@ -390,7 +390,7 @@ const ContentModeration: React.FC = () => {
                   </div>
 
                   {item.autoFlags.length > 0 && (
-                    <div className="flex items-center gap-1 text-xs text-blue-600">
+                    <div className="flex items-center gap-1 text-xs text-emerald-600">
                       <Icon name="bot" size="16" />
                       Auto-flagged
                     </div>
@@ -478,13 +478,13 @@ const ContentModeration: React.FC = () => {
                     </h5>
                     <div className="space-y-2">
                       {selectedItem.autoFlags.map((flag, index) => (
-                        <div key={index} className="p-2 bg-blue-50 rounded border-l-4 border-blue-400">
+                        <div key={index} className="p-2 bg-emerald-50 rounded border-l-4 border-emerald-400">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-sm font-medium text-blue-900">{flag.type}</span>
-                            <span className="text-xs text-blue-600">{Math.round(flag.confidence * 100)}%</span>
+                            <span className="text-sm font-medium text-emerald-900">{flag.type}</span>
+                            <span className="text-xs text-emerald-600">{Math.round(flag.confidence * 100)}%</span>
                           </div>
-                          <p className="text-xs text-blue-800">{flag.reason}</p>
-                          <p className="text-xs text-blue-600 mt-1">{flag.details}</p>
+                          <p className="text-xs text-emerald-800">{flag.reason}</p>
+                          <p className="text-xs text-emerald-600 mt-1">{flag.details}</p>
                         </div>
                       ))}
                     </div>

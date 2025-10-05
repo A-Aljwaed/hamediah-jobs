@@ -109,12 +109,12 @@
   }
   
   .btn-accent {
-    @apply inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold text-white rounded-lg transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500;
-    background: var(--secondary-purple);
+    @apply inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold text-white rounded-lg transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500;
+    background: var(--color-accent);
   }
   
   .btn-accent:hover {
-    background: var(--secondary-purple-dark);
+    background: var(--color-primary-600);
   }
   
   /* Modern Card Styles */
