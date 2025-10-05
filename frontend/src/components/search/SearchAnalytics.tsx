@@ -233,7 +233,7 @@ const SearchAnalytics: React.FC<SearchAnalyticsProps> = ({
                   {formatNumber(analyticsData.searchVolume[timeframe === 'day' ? 'today' : timeframe === 'week' ? 'thisWeek' : 'thisMonth'])}
                 </p>
               </div>
-              <Activity className="w-8 h-8 text-blue-600" />
+              <Activity className="w-8 h-8 text-emerald-600" />
             </div>
           </CardContent>
         </Card>

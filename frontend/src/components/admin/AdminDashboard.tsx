@@ -224,7 +224,7 @@ const AdminDashboard: React.FC = () => {
                   <span className="text-sm text-green-600">+{stats.userGrowth}%</span>
                 </div>
               </div>
-              <Icon name="users" size="20" className="text-blue-600" />
+              <Icon name="users" size="20" className="text-emerald-600" />
             </div>
           </CardContent>
         </Card>
