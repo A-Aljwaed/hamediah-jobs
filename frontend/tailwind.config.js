@@ -72,7 +72,7 @@ module.exports = {
         'large': '0 10px 40px -10px rgba(0, 0, 0, 0.12), 0 20px 25px -5px rgba(0, 0, 0, 0.08)',
         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.1)',
         'glow': '0 0 30px rgba(16, 185, 129, 0.3)',
-        'glow-purple': '0 0 30px rgba(139, 92, 246, 0.3)',
+        'glow-green': '0 0 30px rgba(16, 185, 129, 0.3)',
       },
       backdropBlur: {
         xs: '2px',
